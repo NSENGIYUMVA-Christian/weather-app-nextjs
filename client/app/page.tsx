@@ -1,8 +1,10 @@
 // page.tsx
 
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import { useEffect } from "react";
+
+
 
 
 const getData = async()=>{
@@ -22,7 +24,7 @@ export default async function Home() {
   console.log("ok here", data)
 
   return (
-    <main>
+    <main className={styles.title} >
       Hello there
     </main>
   );
