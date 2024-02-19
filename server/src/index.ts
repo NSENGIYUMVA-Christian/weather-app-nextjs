@@ -13,12 +13,14 @@ const port = process.env.PORT || 8080;
 
 /// middle ware to allow cors
 app.use(cors());
+app.use(express.json());
 
 app.get("/", ({req, res}:resAndReqType) => {
   res.json({ success: true, msg: "testing whether" });
 });
 // login
 app.get("/users/login", ({req, res}:resAndReqType) => {
+ 
   res.json({ success: true, msg: "login" });
 });
 // register

@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 /// middle ware to allow cors
 app.use(cors());
+app.use(express.json());
 app.get("/", ({ req, res }) => {
     res.json({ success: true, msg: "testing whether" });
 });
