@@ -7,9 +7,6 @@ const port = 8080;
 /// middle ware to allow cors
 app.use(cors());
 app.get("/", ({ req, res }) => {
-  res.json({ success: true, msg: "testing whether" });
+    res.json({ success: true, msg: "testing whether" });
 });
-
-app.listen(port, () =>
-  console.log(`the server is listening to port ${port}...`)
-);
+app.listen(port, () => console.log(`the server is listening to port ${port}...`));
