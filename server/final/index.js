@@ -2,24 +2,35 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-//port
+// Port
 const port = process.env.PORT || 8080;
-/// middle ware to allow cors
+/// type and interface
+// interface ResponseData {
+//   success?: boolean;
+//   msg?: string;
+// }
+// Middleware to allow CORS
 app.use(cors());
 app.use(express.json());
-app.get("/", ({ req, res }) => {
-    res.json({ success: true, msg: "testing whether" });
+app.use(express.urlencoded({ extended: false }));
+app.get("/", (req, res) => {
+    res.send(responseData);
 });
-// login
-app.get("/users/login", ({ req, res }) => {
+// Login
+app.get("/users/login", (req, res) => {
     res.json({ success: true, msg: "login" });
 });
-// register
-app.get("/users/register", ({ req, res }) => {
-    res.json({ success: true, msg: "register" });
+// Register
+app.post("/users/register", (req, res) => {
+    const { first_name, last_name, email, username, password } = req.body;
+    /// check if all form data are entered
+    if (!first_name || !last_name || !email || !username || !password) {
+        res.send("Please fill all fields");
+    }
+    res.json({ success: true, msg: `${first_name} register` });
 });
-// dashboard
-app.get("/users/dashboard", ({ req, res }) => {
+// Dashboard
+app.get("/users/dashboard", (req, res) => {
     res.json({ success: true, msg: "dashboard" });
 });
-app.listen(port, () => console.log(`the server is listening to port ${port}...`));
+app.listen(port, () => console.log(`The server is listening to port ${port}...`));
