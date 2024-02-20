@@ -3,37 +3,41 @@ const pool = require("../dbConfig");
 const {
   getUserByUserName,
   addUserByAllValues,
-} = require("../querries/authQuerries");
+} = require("../queries/authQueries");
 
 // Register
 const register = async (req, res) => {
   const { first_name, last_name, email, username, password } = req.body;
-  /// check if all form data are entered
+
   if (!first_name || !last_name || !email || !username || !password) {
     return res.send("Please fill all fields");
   }
-  // validate password
+
   if (password.length < 5) {
-    return res.send("Password must me at least 5 characters");
+    return res.send("Password must be at least 5 characters");
   }
-  ///// hash password
+
   const hashedPassword = await bcrypt.hash(password, 10);
-  /// check if user already exist in db
+
   pool.query(getUserByUserName, [username], (error, response) => {
-    if (error) throw error; // Throw the error object itself, not a new instance
-    // if username exist
-    //console.log("res", response.rows);
+    if (error) {
+      console.error("Error checking username existence:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+
     if (response.rows.length > 0) {
-      return res.json({ msg: "username already exist " });
+      return res.json({ msg: "Username already exists" });
     } else {
       pool.query(
         addUserByAllValues,
         [first_name, last_name, email, username, hashedPassword],
         (err, result) => {
-          if (err) throw err;
-          // if true
-          console.log("result", result.rows);
-          return res.json({ msg: "registered success" });
+          if (err) {
+            console.error("Error registering user:", err);
+            return res.status(500).json({ error: "Internal server error" });
+          }
+
+          return res.json({ msg: "Registration successful" });
         }
       );
     }
@@ -42,7 +46,33 @@ const register = async (req, res) => {
 
 // Login
 const login = async (req, res) => {
-  res.json({ success: true, msg: "login" });
+  const { username, password } = req.body;
+  //// retrieve user from DB based on login form
+  pool.query(getUserByUserName, [username], (err, result) => {
+    if (err) {
+      console.error("Error retrieving user:", err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+
+    const user = result.rows[0];
+    /// if no user found
+    if (!user) {
+      return res.json({ msg: "User not found" });
+    }
+    //// compare password
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        console.error("Error comparing passwords:", err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
+
+      if (isMatch) {
+        return res.json({ msg: "Login successful" });
+      } else {
+        return res.json({ msg: "Invalid credentials" });
+      }
+    });
+  });
 };
 
 module.exports = { login, register };
