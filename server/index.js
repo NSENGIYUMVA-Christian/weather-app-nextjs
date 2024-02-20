@@ -49,11 +49,21 @@ app.post("/users/register", async (req, res) => {
     (error, response) => {
       if (error) throw error; // Throw the error object itself, not a new instance
       // if username exist
-      console.log("res", response.rows);
+      //console.log("res", response.rows);
       if (response.rows.length > 0) {
         return res.json({ msg: "username already exist " });
+      } else {
+        pool.query(
+          `INSERT INTO users (first_name,last_name,email,username,password) VALUES ($1,$2,$3,$4,$5) RETURNING id,password`,
+          [first_name, last_name, email, username, hashedPassword],
+          (err, result) => {
+            if (err) throw err;
+            // if true
+            console.log("result", result.rows);
+            // res.flash("success_msg", "Register success");
+          }
+        );
       }
-
       /// warning error
     }
   );
