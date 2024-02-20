@@ -4,7 +4,7 @@ const app = express();
 const bcrypt = require("bcrypt");
 const pool = require("./dbConfig");
 const session = require("express-session");
-const flash = require("express-flash");
+
 // Port
 const port = process.env.PORT || 8080;
 
@@ -19,13 +19,11 @@ app.use(
   })
 );
 
-app.use(flash());
-
 app.get("/", (req, res) => {
   res.send(responseData);
 });
 // Login
-app.get("/users/login", (req, res) => {
+app.post("/users/login", (req, res) => {
   res.json({ success: true, msg: "login" });
 });
 
@@ -60,7 +58,7 @@ app.post("/users/register", async (req, res) => {
             if (err) throw err;
             // if true
             console.log("result", result.rows);
-            // res.flash("success_msg", "Register success");
+            return res.json({ msg: "registered success" });
           }
         );
       }
