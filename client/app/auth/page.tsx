@@ -42,7 +42,13 @@ setRegisterData({ ...registerData, [event.target.name]: event.target.value });
   };
   const submitRegisterData = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-   console.log("reg data",registerData)
+    try {
+        const {data} = await axios.post("http://localhost:8080/api/v1/auth/register",registerData)
+       // console.log('form data is', loginData);
+        console.log("data is",data)
+    } catch (error) {
+        console.log("there was an error")
+    }
   };
 
   return (
