@@ -2,6 +2,7 @@
 import {createContext,ReactNode, useState,useContext} from"react"
 import { getUserFromLocalStorage, removeUserFromLocalStorage } from "@/utils/localStorage";
 
+
 const AppContext =  createContext<any>(undefined);
 
 export function AppWrapper({children}:{
@@ -9,6 +10,7 @@ export function AppWrapper({children}:{
 }){
      ////////auth state
     const [auth,setAuth] = useState(getUserFromLocalStorage())
+
   
 
     return (
