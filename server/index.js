@@ -22,10 +22,6 @@ app.use(
 app.get("/", (req, res) => {
   res.send(responseData);
 });
-// Login
-app.post("/users/login", (req, res) => {
-  res.json({ success: true, msg: "login" });
-});
 
 // Register
 app.post("/users/register", async (req, res) => {
