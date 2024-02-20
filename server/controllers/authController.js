@@ -4,6 +4,8 @@ const {
   getUserByUserName,
   addUserByAllValues,
 } = require("../queries/authQueries");
+const { createJWT } = require("../utils/jwt");
+const { createTokenUSer } = require("../utils/createTokenUser");
 
 // Register
 const register = async (req, res) => {
@@ -67,7 +69,11 @@ const login = async (req, res) => {
       }
 
       if (isMatch) {
-        return res.json({ msg: "Login successful" });
+        // if everything is correct
+        // payload to send on token
+        const tokenUser = createTokenUSer(user);
+        const token = createJWT({ payload: tokenUser });
+        return res.json({ msg: "Login successful", user, token });
       } else {
         return res.json({ msg: "Invalid credentials" });
       }
