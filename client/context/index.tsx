@@ -1,16 +1,18 @@
 "use client"
 import {createContext,ReactNode, useState,useContext} from"react"
-
+import { getUserFromLocalStorage, removeUserFromLocalStorage } from "@/utils/localStorage";
 
 const AppContext =  createContext<any>(undefined);
 
 export function AppWrapper({children}:{
     children:ReactNode
 }){
-    const [name, setName] = useState('chris')
+     ////////auth state
+    const [auth,setAuth] = useState(getUserFromLocalStorage())
+  
 
     return (
-        <AppContext.Provider value={{name,setName}} >
+        <AppContext.Provider value={{auth,setAuth}} >
             {children}
         </AppContext.Provider>
     )

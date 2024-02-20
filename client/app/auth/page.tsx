@@ -1,9 +1,12 @@
 'use client'
 import React, { useState } from 'react';
 import axios from "axios"
-import { log } from 'console';
+import { addUserToLocalStorage } from "@/utils/localStorage";
+import { useAppContext } from '@/context';
+useAppContext
 
 const AuthPage = () => {
+    const {auth,setAuth} = useAppContext()
     /// login data
   const [loginData, setLoginData] = useState<any>({
     username: '',
@@ -34,6 +37,12 @@ setRegisterData({ ...registerData, [event.target.name]: event.target.value });
     e.preventDefault()
     try {
         const {data} = await axios.post("http://localhost:8080/api/v1/auth/login",loginData)
+
+             // set temp auth
+     setAuth(data);
+      /// keeping response in local storage
+      //localStorage.setItem('authData',JSON.stringify(resp.data));
+       addUserToLocalStorage(data);
        // console.log('form data is', loginData);
         console.log("data is",data)
     } catch (error) {
@@ -56,7 +65,7 @@ setRegisterData({ ...registerData, [event.target.name]: event.target.value });
       <h2>Form</h2>
    {hasAccountAlready ?
    <form > 
-   <h2>Login</h2>
+   <h2>Login </h2>
    <input type='text' name='username' value={loginData.username} onChange={handleLoginDataChange} />
    <input type='password' name='password' value={loginData.password} onChange={handleLoginDataChange} />
    <button type='submit' onClick={submitLoginData}>Login</button>
