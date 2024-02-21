@@ -30,7 +30,7 @@
       email:''
     });
     /// is user has an account
-    const [hasAccountAlready,setHasAccountAlready] = useState<boolean>(false)
+    const [hasAccountAlready,setHasAccountAlready] = useState<boolean>(true)
 
   ///// handle login form change
     const handleLoginDataChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,16 +79,15 @@
         </div>
         {/* col-2 */}
         <div className={styles.col2} >
-        <h2 className={styles.title} >Form</h2>
     {hasAccountAlready ?
     <form > 
     <h2>Login  </h2>
+    <p>Enter your login credentials to access your account</p>
     <input type='text' name='username' value={loginData.username} onChange={handleLoginDataChange} />
     <input type='password' name='password' value={loginData.password} onChange={handleLoginDataChange} />
     <button type='submit' onClick={submitLoginData}>Login</button>
     <p>Don't have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(false)} >Register</button> </span></p> 
   </form> : 
-
     <form >
     <h2>Register </h2>
     <input type='text' name='first_name' value={registerData.first_name} onChange={handleRegisterDataChange} />
