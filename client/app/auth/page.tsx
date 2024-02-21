@@ -86,8 +86,18 @@
     <p>Enter your login credentials to access your account</p>
       </div>
       <div className={styles.col2Row2} >
-      <input type='text' name='username' value={loginData.username} onChange={handleLoginDataChange} />
-    <input type='password' name='password' value={loginData.password} onChange={handleLoginDataChange} />
+        {/* field */}
+        <div className={styles.field} >
+          <label htmlFor="">username</label>
+        <input type='text' name='username' value={loginData.username} onChange={handleLoginDataChange} />
+        </div>
+         {/* field */}
+        <div className={styles.field} >
+        <label htmlFor="">password</label>
+        <input type='password' name='password' value={loginData.password} onChange={handleLoginDataChange} />
+        </div>
+
+   
       </div>
       <div className={styles.col2Row3} >
       <button type='submit' onClick={submitLoginData}>Login</button>

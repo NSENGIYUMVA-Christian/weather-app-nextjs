@@ -7,8 +7,8 @@ $skyBlue:#00608B;
 .mainContainer{
     border:1px solid red;
     display: flex;
-    width:100%;
-    height:100%
+   height: 100vh;
+ 
 }
 
 .col2{
@@ -47,7 +47,25 @@ $skyBlue:#00608B;
        }
 }
 .col2Row2{
-    border: 1px solid green
+    border: 1px solid green;
+    display:flex;
+    flex-direction: column;
+    .field{
+        border:1px solid $darkgrey;
+        width:100%;
+        height: 56px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        padding:0px 16px;
+        gap:2px;
+        input{
+            border:1px solid red;
+            width:100%;
+            height:100%;
+            border-radius: 8px;
+        }
+    }
 }
 .col2Row3{
     border: 1px solid orange
