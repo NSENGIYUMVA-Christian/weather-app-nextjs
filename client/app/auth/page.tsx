@@ -105,8 +105,8 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
    
       </div>
       <div className={styles.col2Row3} >
-      <button type='submit' onClick={submitLoginData} className={styles.submitBtn} >Login</button>
-    <p>Don't have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(false)} className={styles.toggleLoginBtn}  >Register</button> </span></p> 
+      <button type='submit' onClick={submitLoginData} className={`${styles.submitBtn} ${sofiaProMedium.className}` } >Login</button>
+    <p className={`${sofiaProMedium.className} ${styles.toogleFormPara}` } >Don't have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(false)} className={`${styles.toggleLoginBtn}  `}  >Register</button> </span></p> 
       </div>
   </form> : 
     <form className='registerForm' >
