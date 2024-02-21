@@ -7,7 +7,7 @@
   import banner from '../../public/images/banner.svg';
   import Image from 'next/image'
   import styles from "./page.module.scss"
-import { sofiaProBold,sofiaProMedium,sofiaProRegular } from '@/fonts/fonts';
+import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
 
 
 
@@ -82,12 +82,12 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular } from '@/fonts/fonts';
     />
         </div>
         {/* col-2 */}
-        <div className={`${styles.col2} ${sofiaProBold.className}`} >
+        <div className={`${styles.col2}`} >
     {hasAccountAlready ?
     <form className='loginForm' > 
       <div className={styles.col2Row1} >
-      <h2 className={styles.title} >Login  </h2>
-    <p>Enter your login credentials to access your account</p>
+      <h3 className={` ${styles.title} ${bicycletteRegular.className}`} >Login </h3>
+    <p className={` ${sofiaProRegular.className}`}  >Enter your login credentials to access your account</p>
       </div>
       <div className={styles.col2Row2} >
         {/* field */}
