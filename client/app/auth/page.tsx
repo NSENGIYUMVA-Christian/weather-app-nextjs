@@ -30,7 +30,7 @@
       email:''
     });
     /// is user has an account
-    const [hasAccountAlready,setHasAccountAlready] = useState<boolean>(true)
+    const [hasAccountAlready,setHasAccountAlready] = useState<boolean>(false)
 
   ///// handle login form change
     const handleLoginDataChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +80,7 @@
         {/* col-2 */}
         <div className={styles.col2} >
     {hasAccountAlready ?
-    <form > 
+    <form className='loginForm' > 
       <div className={styles.col2Row1} >
       <h2 className={styles.title} >Login  </h2>
     <p>Enter your login credentials to access your account</p>
@@ -105,15 +105,44 @@
     <p>Don't have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(false)} className={styles.toggleLoginBtn}  >Register</button> </span></p> 
       </div>
   </form> : 
-    <form >
-    <h2 className={styles.title}>Register </h2>
-    <input type='text' name='first_name' value={registerData.first_name} onChange={handleRegisterDataChange} />
+    <form className='registerForm' >
+      {/* row 1 */}
+      <div className={styles.col2Row1}>
+      <h2 className={styles.title}>Sign Up</h2>
+      <p>Create an account</p>
+      </div>
+         {/* row 2 */}
+      <div className={styles.col2Row2}>
+      <div className={styles.field} >
+      <label htmlFor="">First name</label>
+      <input type='text' name='first_name' value={registerData.first_name} onChange={handleRegisterDataChange} />
+      </div>
+          <div className={styles.field} >
+              <label htmlFor="">Last name</label>
     <input type='text' name='last_name' value={registerData.last_name} onChange={handleRegisterDataChange} />
+    </div>
+        <div className={styles.field} >
+            <label htmlFor="">Email</label>
     <input type='email' name='email' value={registerData.email} onChange={handleRegisterDataChange} />
+    </div>
+        <div className={styles.field} >
+            <label htmlFor="">Username</label>
     <input type='text' name='username' value={registerData.username} onChange={handleRegisterDataChange} />
+    </div>
+        <div className={styles.field} >
+            <label htmlFor="">Password</label>
     <input type='password' name='password' value={registerData.password} onChange={handleRegisterDataChange} />
-    <button type='submit' onClick={submitRegisterData}>Sign up</button>
-  <p>Have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(true)} >Login</button> </span></p> 
+    </div>
+
+      </div>
+         {/* row 3 */}
+      <div className={styles.col2Row3}>
+      <button type='submit' onClick={submitRegisterData}  className={styles.submitBtn} >Sign up</button>
+  <p>Have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(true)} className={styles.toggleLoginBtn} >Login</button> </span></p> 
+      </div>
+   
+
+
   </form>
   }
         </div>
