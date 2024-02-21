@@ -7,6 +7,10 @@
   import banner from '../../public/images/banner.svg';
   import Image from 'next/image'
   import styles from "./page.module.scss"
+import { sofiaProBold,sofiaProMedium,sofiaProRegular } from '@/fonts/fonts';
+
+
+
 
 
   const AuthPage = () => {
@@ -30,7 +34,7 @@
       email:''
     });
     /// is user has an account
-    const [hasAccountAlready,setHasAccountAlready] = useState<boolean>(false)
+    const [hasAccountAlready,setHasAccountAlready] = useState<boolean>(true)
 
   ///// handle login form change
     const handleLoginDataChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +82,7 @@
     />
         </div>
         {/* col-2 */}
-        <div className={styles.col2} >
+        <div className={`${styles.col2} ${sofiaProBold.className}`} >
     {hasAccountAlready ?
     <form className='loginForm' > 
       <div className={styles.col2Row1} >
