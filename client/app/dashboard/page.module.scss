@@ -1,0 +1,17 @@
+
+
+
+.mainContainer{
+    border: 1px solid red;
+    display: flex;
+    height: 100vh;
+    img{
+        width:100%;
+        height: 100%;
+    }
+}
+
+.col2{
+    border: 4px solid green;
+    flex: 1;
+}

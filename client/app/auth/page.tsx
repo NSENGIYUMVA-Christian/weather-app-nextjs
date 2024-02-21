@@ -60,6 +60,8 @@ import {  toast } from 'react-toastify';
        setAuth(data.user);
         /// keeping response in local storage
         addUserToLocalStorage(data.user);
+        /// notify user
+        toast.success("Login success")
         /// go to dashboard
         router.push('/dashboard')
           //console.log("data is",data)
@@ -77,8 +79,7 @@ import {  toast } from 'react-toastify';
         }
       try {
           const {data} = await axios.post("http://localhost:8080/api/v1/auth/register",registerData)
-        // console.log('form data is', loginData);
-          console.log("data is",data)
+          toast.success("Register success")
       } catch (error) {
           console.log("there was an error")
       }
