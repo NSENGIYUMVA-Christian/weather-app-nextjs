@@ -8,7 +8,7 @@
   import Image from 'next/image'
   import styles from "./page.module.scss"
 import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
-
+import {  toast } from 'react-toastify';
 
 
 
@@ -51,8 +51,7 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
       /// check if data is provided
       if(!loginData.username || !loginData.password)
       {
-        console.log("provide data")
-        alert("provide all values")
+        toast.warning("provide all values")
         return
       }
       try {
@@ -70,6 +69,12 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
     };
     const submitRegisterData = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault()
+        /// check if data is provided
+        if( !registerData.email || !registerData.last_name || !registerData.first_name || !registerData.username || !registerData.password)
+        {
+          toast.warning("provide all values")
+          return
+        }
       try {
           const {data} = await axios.post("http://localhost:8080/api/v1/auth/register",registerData)
         // console.log('form data is', loginData);
