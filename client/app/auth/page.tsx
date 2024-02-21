@@ -34,7 +34,7 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
       email:''
     });
     /// is user has an account
-    const [hasAccountAlready,setHasAccountAlready] = useState<boolean>(true)
+    const [hasAccountAlready,setHasAccountAlready] = useState<boolean>(false)
 
   ///// handle login form change
     const handleLoginDataChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,14 +85,16 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
         <div className={`${styles.col2}`} >
     {hasAccountAlready ?
     <form className='loginForm' > 
+    {/* row 1 */}
       <div className={styles.col2Row1} >
       <h3 className={` ${styles.title} ${bicycletteRegular.className}`} >Login </h3>
     <p className={` ${sofiaProRegular.className}`}  >Enter your login credentials to access your account</p>
       </div>
+      {/* row 2 */}
       <div className={styles.col2Row2} >
         {/* field */}
         <div className={styles.field} >
-          <label htmlFor="" className={` ${sofiaProRegular.className}`}  >username</label>
+          <label htmlFor="" className={`${sofiaProRegular.className}`}  >username</label>
         <input className={sofiaProMedium.className}  type='text' name='username' value={loginData.username} placeholder='john_doe'  onChange={handleLoginDataChange}  />
         </div>
          {/* field */}
@@ -104,45 +106,47 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
          <a className={`${styles.forgotPassword} ${sofiaProMedium.className} `} >Forgot Password?</a>
    
       </div>
+      {/* row 3 */}
       <div className={styles.col2Row3} >
       <button type='submit' onClick={submitLoginData} className={`${styles.submitBtn} ${sofiaProMedium.className}` } >Login</button>
     <p className={`${sofiaProMedium.className} ${styles.toogleFormPara}` } >Don't have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(false)} className={`${styles.toggleLoginBtn}  `}  >Register</button> </span></p> 
       </div>
   </form> : 
+
     <form className='registerForm' >
       {/* row 1 */}
       <div className={styles.col2Row1}>
-      <h2 className={styles.title}>Sign Up</h2>
-      <p>Create an account</p>
+      <h3 className={` ${styles.title} ${bicycletteRegular.className}`}>Sign Up</h3>
+      <p className={` ${sofiaProRegular.className}`} >Create an account</p>
       </div>
          {/* row 2 */}
       <div className={styles.col2Row2}>
       <div className={styles.field} >
-      <label htmlFor="">First name</label>
+      <label htmlFor="" className={`${sofiaProRegular.className}`}  >First name</label>
       <input type='text' name='first_name' value={registerData.first_name} onChange={handleRegisterDataChange} />
       </div>
           <div className={styles.field} >
-              <label htmlFor="">Last name</label>
-    <input type='text' name='last_name' value={registerData.last_name} onChange={handleRegisterDataChange} />
+              <label htmlFor="" className={`${sofiaProRegular.className}`} >Last name</label>
+    <input className={sofiaProMedium.className} type='text' name='last_name' value={registerData.last_name} onChange={handleRegisterDataChange} />
     </div>
         <div className={styles.field} >
-            <label htmlFor="">Email</label>
-    <input type='email' name='email' value={registerData.email} onChange={handleRegisterDataChange} />
+            <label htmlFor="" className={`${sofiaProRegular.className}`} >Email</label>
+    <input className={sofiaProMedium.className} type='email' name='email' value={registerData.email} onChange={handleRegisterDataChange} />
     </div>
         <div className={styles.field} >
-            <label htmlFor="">Username</label>
-    <input type='text' name='username' value={registerData.username} onChange={handleRegisterDataChange} />
+            <label htmlFor="" className={`${sofiaProRegular.className}`} >Username</label>
+    <input className={sofiaProMedium.className} type='text' name='username' value={registerData.username} onChange={handleRegisterDataChange} />
     </div>
         <div className={styles.field} >
-            <label htmlFor="">Password</label>
-    <input type='password' name='password' value={registerData.password} onChange={handleRegisterDataChange} />
+            <label htmlFor="" className={`${sofiaProRegular.className}`} >Password</label>
+    <input className={sofiaProMedium.className} type='password' name='password' value={registerData.password} onChange={handleRegisterDataChange} />
     </div>
 
       </div>
          {/* row 3 */}
       <div className={styles.col2Row3}>
-      <button type='submit' onClick={submitRegisterData}  className={styles.submitBtn} >Sign up</button>
-  <p>Have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(true)} className={styles.toggleLoginBtn} >Login</button> </span></p> 
+      <button type='submit' onClick={submitRegisterData}  className={`${styles.submitBtn} ${sofiaProMedium.className}` }  >Sign up</button>
+  <p className={`${sofiaProMedium.className} ${styles.toogleFormPara}` } >Have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(true)} className={styles.toggleLoginBtn} >Login</button> </span></p> 
       </div>
    
 
