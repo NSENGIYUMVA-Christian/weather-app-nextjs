@@ -94,13 +94,13 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
       <div className={styles.col2Row2} >
         {/* field */}
         <div className={styles.field} >
-          <label htmlFor="" className={`${sofiaProRegular.className}`}  >username</label>
-        <input className={sofiaProMedium.className}  type='text' name='username' value={loginData.username} placeholder='john_doe'  onChange={handleLoginDataChange}  />
+          <label htmlFor="username" className={`${sofiaProRegular.className}`}  >username</label>
+        <input id='username' className={sofiaProMedium.className}  type='text' name='username' value={loginData.username} placeholder='john_doe'  onChange={handleLoginDataChange}  />
         </div>
          {/* field */}
         <div className={styles.field} >
-        <label htmlFor="" className={` ${sofiaProRegular.className}`}  >password</label>
-        <input className={sofiaProMedium.className} type='password' name='password' value={loginData.password} placeholder='johndoe@email.com' onChange={handleLoginDataChange} />
+        <label htmlFor="password" className={` ${sofiaProRegular.className}`}  >password</label>
+        <input id='password' className={sofiaProMedium.className} type='password' name='password' value={loginData.password} placeholder='*******' onChange={handleLoginDataChange} />
         </div>
          {/* forgot password */}
          <a className={`${styles.forgotPassword} ${sofiaProMedium.className} `} >Forgot Password?</a>
@@ -122,24 +122,24 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
          {/* row 2 */}
       <div className={styles.col2Row2}>
       <div className={styles.field} >
-      <label htmlFor="" className={`${sofiaProRegular.className}`}  >First name</label>
-      <input type='text' name='first_name' value={registerData.first_name} onChange={handleRegisterDataChange} />
+      <label htmlFor="First" className={`${sofiaProRegular.className}`}  >First name</label>
+      <input id='First' type='text' name='first_name' value={registerData.first_name}  placeholder='john'  onChange={handleRegisterDataChange} />
       </div>
           <div className={styles.field} >
-              <label htmlFor="" className={`${sofiaProRegular.className}`} >Last name</label>
-    <input className={sofiaProMedium.className} type='text' name='last_name' value={registerData.last_name} onChange={handleRegisterDataChange} />
+              <label htmlFor="Last" className={`${sofiaProRegular.className}`} >Last name</label>
+    <input id='Last' className={sofiaProMedium.className} type='text' name='last_name' value={registerData.last_name} placeholder='doe'  onChange={handleRegisterDataChange} />
     </div>
         <div className={styles.field} >
-            <label htmlFor="" className={`${sofiaProRegular.className}`} >Email</label>
-    <input className={sofiaProMedium.className} type='email' name='email' value={registerData.email} onChange={handleRegisterDataChange} />
+            <label htmlFor="Email" className={`${sofiaProRegular.className}`} >Email</label>
+    <input id='Email' className={sofiaProMedium.className} type='email' name='email' value={registerData.email} placeholder='john@email'  onChange={handleRegisterDataChange} />
     </div>
         <div className={styles.field} >
-            <label htmlFor="" className={`${sofiaProRegular.className}`} >Username</label>
-    <input className={sofiaProMedium.className} type='text' name='username' value={registerData.username} onChange={handleRegisterDataChange} />
+            <label htmlFor="Username" className={`${sofiaProRegular.className}`} >Username</label>
+    <input id='Username' className={sofiaProMedium.className} type='text' name='username' value={registerData.username} placeholder='john_doe'  onChange={handleRegisterDataChange} />
     </div>
         <div className={styles.field} >
-            <label htmlFor="" className={`${sofiaProRegular.className}`} >Password</label>
-    <input className={sofiaProMedium.className} type='password' name='password' value={registerData.password} onChange={handleRegisterDataChange} />
+            <label htmlFor="Password" className={`${sofiaProRegular.className}`} >Password</label>
+    <input id='Password' className={sofiaProMedium.className} type='password' name='password' value={registerData.password} placeholder='*****'  onChange={handleRegisterDataChange} />
     </div>
 
       </div>

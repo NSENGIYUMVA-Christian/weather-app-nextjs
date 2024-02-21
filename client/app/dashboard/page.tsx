@@ -19,7 +19,7 @@ console.log("test hh",auth)
     },[])
 
     /// getting auth data
-    const {id,first_name,last_name,email,username} = auth
+    const {id,first_name,last_name,email,username} = auth || {}
   return (<>
  {auth && <div>
    <h2>welcome {first_name} to dashboard</h2> 
