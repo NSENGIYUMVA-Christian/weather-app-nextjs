@@ -48,6 +48,13 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
     /// submit login form data
     const submitLoginData = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault()
+      /// check if data is provided
+      if(!loginData.username || !loginData.password)
+      {
+        console.log("provide data")
+        alert("provide all values")
+        return
+      }
       try {
           const {data} = await axios.post("http://localhost:8080/api/v1/auth/login",loginData)
               // set temp auth
@@ -95,7 +102,7 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
         {/* field */}
         <div className={styles.field} >
           <label htmlFor="username" className={`${sofiaProRegular.className}`}  >username</label>
-        <input id='username' className={sofiaProMedium.className}  type='text' name='username' value={loginData.username} placeholder='john_doe'  onChange={handleLoginDataChange}  />
+        <input  id='username' className={sofiaProMedium.className}  type='text' name='username' value={loginData.username} placeholder='john_doe'  onChange={handleLoginDataChange}  />
         </div>
          {/* field */}
         <div className={styles.field} >
