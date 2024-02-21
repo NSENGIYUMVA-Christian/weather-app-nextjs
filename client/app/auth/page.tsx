@@ -4,6 +4,9 @@
   import { addUserToLocalStorage } from "@/utils/localStorage";
   import { useAppContext } from '@/context';
   import { useRouter } from 'next/navigation'
+  import banner from '../../public/images/banner.svg';
+  import Image from 'next/image'
+  import styles from "./page.module.scss"
 
 
   const AuthPage = () => {
@@ -43,15 +46,13 @@
       e.preventDefault()
       try {
           const {data} = await axios.post("http://localhost:8080/api/v1/auth/login",loginData)
-
               // set temp auth
-      // setAuth(data);
+       setAuth(data.user);
         /// keeping response in local storage
         addUserToLocalStorage(data.user);
-        /// go to homepage
-        router.push('/')
-    
-          console.log("data is",data)
+        /// go to dashboard
+        router.push('/dashboard')
+          //console.log("data is",data)
       } catch (error) {
           console.log("there was an error",error)
       }
@@ -68,11 +69,20 @@
     };
 
     return (
-      <div>
-        <h2>Form</h2>
+      <section className={styles.mainContainer} >
+        {/* col 1 */}
+        <div>
+        <Image
+      src={banner}
+      alt="weather banner"
+    />
+        </div>
+        {/* col-2 */}
+        <div className={styles.col2} >
+        <h2 className={styles.title} >Form</h2>
     {hasAccountAlready ?
     <form > 
-    <h2>Login {auth.first_name} </h2>
+    <h2>Login  </h2>
     <input type='text' name='username' value={loginData.username} onChange={handleLoginDataChange} />
     <input type='password' name='password' value={loginData.password} onChange={handleLoginDataChange} />
     <button type='submit' onClick={submitLoginData}>Login</button>
@@ -80,7 +90,7 @@
   </form> : 
 
     <form >
-    <h2>Register {auth.first_name}</h2>
+    <h2>Register </h2>
     <input type='text' name='first_name' value={registerData.first_name} onChange={handleRegisterDataChange} />
     <input type='text' name='last_name' value={registerData.last_name} onChange={handleRegisterDataChange} />
     <input type='email' name='email' value={registerData.email} onChange={handleRegisterDataChange} />
@@ -90,8 +100,10 @@
   <p>Have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(true)} >Login</button> </span></p> 
   </form>
   }
+        </div>
         
-      </div>
+        
+      </section>
     );
   };
 
