@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation'
 import banner from '../../public/images/banner.svg';
 import Image from 'next/image'
 import styles from "./page.module.scss"
+import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
+import {  toast } from 'react-toastify';
 
 
 const dashboard = () => {
@@ -34,7 +36,20 @@ console.log("test hh",auth)
   </div>
   {/* col-2 */}
   <div className={styles.col2} >
-  <h2>welcome {first_name} to dashboard</h2> 
+  <h3>Hi {first_name}</h3> 
+  <form>
+    <div className={styles.col2Row1} >
+    <h3 className={` ${styles.title} ${bicycletteRegular.className}`} >Location</h3>
+    <p>Please select your location desire</p>
+    </div>
+   
+    <div>
+      <label htmlFor=""> Location</label>
+      <input type="text" name="" id="" />
+    </div>
+    {/* submit search btn */}
+    <button>Submit</button>
+  </form>
   </div>
 
     </div> }
