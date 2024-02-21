@@ -43,12 +43,17 @@ console.log("test hh",auth)
     <p>Please select your location desire</p>
     </div>
    
-    <div>
-      <label htmlFor=""> Location</label>
-      <input type="text" name="" id="" />
+    <div className={styles.col2Row2} >
+      <div className={styles.field}  >
+      <label htmlFor="location" className={`${sofiaProRegular.className}`}  > Location</label>
+      <input  id="location" type="text" name=""  className={sofiaProMedium.className}  placeholder='Kanombe,Kigali,Rwanda' />
+      </div>
     </div>
     {/* submit search btn */}
-    <button>Submit</button>
+    <div className={styles.col2Row3}>
+    <button className={styles.submitBtn} >Submit</button>
+    </div>
+  
   </form>
   </div>
 
