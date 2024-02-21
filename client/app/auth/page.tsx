@@ -96,7 +96,8 @@
         <label htmlFor="">password</label>
         <input type='password' name='password' value={loginData.password} onChange={handleLoginDataChange} />
         </div>
-
+         {/* forgot password */}
+         <a className={styles.forgotPassword} >Forgot Password?</a>
    
       </div>
       <div className={styles.col2Row3} >
