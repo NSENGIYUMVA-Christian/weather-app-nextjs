@@ -81,15 +81,21 @@
         <div className={styles.col2} >
     {hasAccountAlready ?
     <form > 
-    <h2>Login  </h2>
+      <div className={styles.col2Row1} >
+      <h2 className={styles.title} >Login  </h2>
     <p>Enter your login credentials to access your account</p>
-    <input type='text' name='username' value={loginData.username} onChange={handleLoginDataChange} />
+      </div>
+      <div className={styles.col2Row2} >
+      <input type='text' name='username' value={loginData.username} onChange={handleLoginDataChange} />
     <input type='password' name='password' value={loginData.password} onChange={handleLoginDataChange} />
-    <button type='submit' onClick={submitLoginData}>Login</button>
+      </div>
+      <div className={styles.col2Row3} >
+      <button type='submit' onClick={submitLoginData}>Login</button>
     <p>Don't have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(false)} >Register</button> </span></p> 
+      </div>
   </form> : 
     <form >
-    <h2>Register </h2>
+    <h2 className={styles.title}>Register </h2>
     <input type='text' name='first_name' value={registerData.first_name} onChange={handleRegisterDataChange} />
     <input type='text' name='last_name' value={registerData.last_name} onChange={handleRegisterDataChange} />
     <input type='email' name='email' value={registerData.email} onChange={handleRegisterDataChange} />
