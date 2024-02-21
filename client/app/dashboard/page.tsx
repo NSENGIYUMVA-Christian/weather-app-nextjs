@@ -4,10 +4,13 @@ import React,{useEffect, useLayoutEffect} from 'react'
 import { useAppContext } from '@/context';
 import { useRouter } from 'next/navigation'
 import banner from '../../public/images/banner.svg';
+import searchIcon from '../../public/images/searchIcon.svg'
 import Image from 'next/image'
 import styles from "./page.module.scss"
 import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
 import {  toast } from 'react-toastify';
+import SearchIcon from '@/components/searchIcon';
+
 
 
 const dashboard = () => {
@@ -37,6 +40,7 @@ console.log("test hh",auth)
   {/* col-2 */}
   <div className={styles.col2} >
   <h3>Hi {first_name}</h3> 
+ 
   <form>
     <div className={styles.col2Row1} >
     <h3 className={` ${styles.title} ${bicycletteRegular.className}`} >Location</h3>
@@ -46,7 +50,7 @@ console.log("test hh",auth)
     <div className={styles.col2Row2} >
       <div className={styles.field}  >
       <label htmlFor="location" className={`${sofiaProRegular.className}`}  > Location</label>
-      <input  id="location" type="text" name=""  className={sofiaProMedium.className}  placeholder='Kanombe,Kigali,Rwanda' />
+      <div className={styles.searchContainer} ><input  id="location" type="text" name=""  className={sofiaProMedium.className}  placeholder='Kanombe,Kigali,Rwanda' /> <span className={styles.searchIconContainer} > <SearchIcon/></span> </div> 
       </div>
     </div>
     {/* submit search btn */}

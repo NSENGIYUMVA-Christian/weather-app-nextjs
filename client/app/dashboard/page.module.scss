@@ -16,7 +16,6 @@ $white:#FFFFFF;
 }
 
 .col2{
-
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -86,6 +85,15 @@ $white:#FFFFFF;
     }
   
 }
+
+.searchContainer{
+    display: flex;
+}
+.searchIconContainer{
+
+    padding:0px 5px;
+}
+
 .col2Row3{
     display: flex;
     flex-direction: column;
