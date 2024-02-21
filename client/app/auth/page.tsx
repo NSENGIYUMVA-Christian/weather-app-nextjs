@@ -89,20 +89,20 @@
         {/* field */}
         <div className={styles.field} >
           <label htmlFor="">username</label>
-        <input type='text' name='username' value={loginData.username} onChange={handleLoginDataChange} />
+        <input type='text' name='username' value={loginData.username} placeholder='john_doe'  onChange={handleLoginDataChange}  />
         </div>
          {/* field */}
         <div className={styles.field} >
         <label htmlFor="">password</label>
-        <input type='password' name='password' value={loginData.password} onChange={handleLoginDataChange} />
+        <input type='password' name='password' value={loginData.password} placeholder='johndoe@email.com' onChange={handleLoginDataChange} />
         </div>
          {/* forgot password */}
          <a className={styles.forgotPassword} >Forgot Password?</a>
    
       </div>
       <div className={styles.col2Row3} >
-      <button type='submit' onClick={submitLoginData}>Login</button>
-    <p>Don't have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(false)} >Register</button> </span></p> 
+      <button type='submit' onClick={submitLoginData} className={styles.submitBtn} >Login</button>
+    <p>Don't have an account? <span> <button type='button' onClick={()=>setHasAccountAlready(false)} className={styles.toggleLoginBtn}  >Register</button> </span></p> 
       </div>
   </form> : 
     <form >

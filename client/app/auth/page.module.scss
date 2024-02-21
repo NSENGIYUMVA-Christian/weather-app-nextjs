@@ -2,6 +2,7 @@ $primary-navy:#2A2F4E;
 $darkgrey:#838AA2;
 $blue:#034EA2;
 $skyBlue:#00608B;
+$white:#FFFFFF;
 
 
 .mainContainer{
@@ -61,10 +62,15 @@ $skyBlue:#00608B;
         gap:2px;
         margin-bottom: 16px;
         input{
-            border:1px solid red;
+            border:none;
             width:100%;
             height:100%;
             border-radius: 8px;
+            
+        }
+        input:focus{
+            border: none;
+            outline: none;
         }
     }
     .forgotPassword{
@@ -78,5 +84,24 @@ $skyBlue:#00608B;
     }
 }
 .col2Row3{
-    border: 1px solid orange
+    border: 1px solid orange;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    .submitBtn{
+        background-color:$skyBlue;
+        height: 56px;
+        color:$white;
+        border-radius: 8px;
+        border:none;
+        line-height: 24px;
+        font-size: 18px;
+        letter-spacing: 0.2px;
+        margin-bottom: 32px;
+    }
+    .toggleLoginBtn{
+        color:$blue;
+        background-color: transparent;
+        border:none
+    }
 }
