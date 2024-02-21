@@ -92,16 +92,16 @@ import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@
       <div className={styles.col2Row2} >
         {/* field */}
         <div className={styles.field} >
-          <label htmlFor="">username</label>
-        <input type='text' name='username' value={loginData.username} placeholder='john_doe'  onChange={handleLoginDataChange}  />
+          <label htmlFor="" className={` ${sofiaProRegular.className}`}  >username</label>
+        <input className={sofiaProMedium.className}  type='text' name='username' value={loginData.username} placeholder='john_doe'  onChange={handleLoginDataChange}  />
         </div>
          {/* field */}
         <div className={styles.field} >
-        <label htmlFor="">password</label>
-        <input type='password' name='password' value={loginData.password} placeholder='johndoe@email.com' onChange={handleLoginDataChange} />
+        <label htmlFor="" className={` ${sofiaProRegular.className}`}  >password</label>
+        <input className={sofiaProMedium.className} type='password' name='password' value={loginData.password} placeholder='johndoe@email.com' onChange={handleLoginDataChange} />
         </div>
          {/* forgot password */}
-         <a className={styles.forgotPassword} >Forgot Password?</a>
+         <a className={`${styles.forgotPassword} ${sofiaProMedium.className} `} >Forgot Password?</a>
    
       </div>
       <div className={styles.col2Row3} >
