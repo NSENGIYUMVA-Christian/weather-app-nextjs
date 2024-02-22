@@ -18,14 +18,15 @@ const dashboard = () => {
     /// getting global context
     const {auth,setAuth} = useAppContext()
     ///// weather state
-    const [weatherSearch,setWeatherSearch] = useState({
+    const [weatherSearch,setWeatherSearch] = useState<any>({
       city:""
     })
 
     //// handle weather on change
-    const handleWeatherOnChange = ()=>{
-      
-    }
+    const handleWeatherOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setWeatherSearch({ ...weatherSearch, [event.target.name]: event.target.value });
+    };
+    
 
        
  
