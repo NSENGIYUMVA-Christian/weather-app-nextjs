@@ -22,6 +22,7 @@ const dashboard = () => {
     const [weatherSearch,setWeatherSearch] = useState<any>({
       city:""
     })
+    const [isLoading,setIsLoading] = useState<boolean>(false)
     /// weather data
     const [weatherData,setWeatherData] = useState<any>(null)
 
@@ -33,12 +34,16 @@ const dashboard = () => {
     const handleWeatherSubmit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
    e.preventDefault()
    try {
+    setIsLoading(true)
     const {data} = await axios.get(`https://api.weatherapi.com/v1/current.json?key=bd38e0750b764db6a8795807230208&q=${weatherSearch.city}`)
    /// set weather data
    setWeatherData(data)
     console.log("here  is data",data)
   } catch (error) {
     console.log("weather error",error)
+   }
+   finally{
+    setIsLoading(false)
    }
     }
 
@@ -85,7 +90,7 @@ const dashboard = () => {
     </div>
     {/* submit search btn */}
     <div className={styles.col2Row3}>
-    <button className={styles.submitBtn} onClick={handleWeatherSubmit} >Submit</button>
+    <button className={styles.submitBtn} onClick={handleWeatherSubmit} disabled={isLoading} >{isLoading ? "Loading..." : "Submit"}</button>
     </div>
       
   </form>
