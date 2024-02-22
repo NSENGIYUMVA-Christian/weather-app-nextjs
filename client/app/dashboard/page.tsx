@@ -22,6 +22,8 @@ const dashboard = () => {
     const [weatherSearch,setWeatherSearch] = useState<any>({
       city:""
     })
+    /// weather data
+    const [weatherData,setWeatherData] = useState<any>(null)
 
     //// handle weather on change
     const handleWeatherOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,14 +33,20 @@ const dashboard = () => {
     const handleWeatherSubmit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
    e.preventDefault()
    try {
-    const {data} = await axios.get("https://api.weatherapi.com/v1/current.json?key=bd38e0750b764db6a8795807230208&q=kigali")
-   console.log("here  is data",data)
+    const {data} = await axios.get(`https://api.weatherapi.com/v1/current.json?key=bd38e0750b764db6a8795807230208&q=${weatherSearch.city}`)
+   /// set weather data
+   setWeatherData(data)
+    console.log("here  is data",data)
   } catch (error) {
     console.log("weather error",error)
    }
     }
 
-       
+      
+    /// testing
+    useEffect(()=>{
+      console.log("weather is =",weatherData)
+    },[weatherData])
  
     useLayoutEffect(()=>{
        if(!auth)
