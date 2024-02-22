@@ -10,6 +10,7 @@ import styles from "./page.module.scss"
 import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
 import {  toast } from 'react-toastify';
 import SearchIcon from '@/components/searchIcon';
+import axios from "axios"
 
 
 
@@ -26,7 +27,16 @@ const dashboard = () => {
     const handleWeatherOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setWeatherSearch({ ...weatherSearch, [event.target.name]: event.target.value });
     };
-    
+    ///// handle submit of weather query
+    const handleWeatherSubmit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+   e.preventDefault()
+   try {
+    const {data} = await axios.get("https://api.weatherapi.com/v1/current.json?key=bd38e0750b764db6a8795807230208&q=kigali")
+   console.log("here  is data",data)
+  } catch (error) {
+    console.log("weather error",error)
+   }
+    }
 
        
  
@@ -67,7 +77,7 @@ const dashboard = () => {
     </div>
     {/* submit search btn */}
     <div className={styles.col2Row3}>
-    <button className={styles.submitBtn} >Submit</button>
+    <button className={styles.submitBtn} onClick={handleWeatherSubmit} >Submit</button>
     </div>
       
   </form>
