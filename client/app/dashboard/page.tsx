@@ -1,6 +1,6 @@
 'use client'
  
-import React,{useEffect, useLayoutEffect} from 'react'
+import React,{useEffect, useLayoutEffect, useState} from 'react'
 import { useAppContext } from '@/context';
 import { useRouter } from 'next/navigation'
 import banner from '../../public/images/banner.svg';
@@ -15,9 +15,20 @@ import SearchIcon from '@/components/searchIcon';
 
 const dashboard = () => {
     const router = useRouter()
-       
+    /// getting global context
     const {auth,setAuth} = useAppContext()
-console.log("test hh",auth)
+    ///// weather state
+    const [weatherSearch,setWeatherSearch] = useState({
+      city:""
+    })
+
+    //// handle weather on change
+    const handleWeatherOnChange = ()=>{
+      
+    }
+
+       
+ 
     useLayoutEffect(()=>{
        if(!auth)
        {
@@ -50,14 +61,14 @@ console.log("test hh",auth)
     <div className={styles.col2Row2} >
       <div className={styles.field}  >
       <label htmlFor="location" className={`${sofiaProRegular.className}`}  > Location</label>
-      <div className={styles.searchContainer} ><input  id="location" type="text" name=""  className={sofiaProMedium.className}  placeholder='Kanombe,Kigali,Rwanda' /> <span className={styles.searchIconContainer} > <SearchIcon/></span> </div> 
+      <div className={styles.searchContainer} ><input  id="location" type="text" name="city" value={weatherSearch.city} onChange={handleWeatherOnChange} className={sofiaProMedium.className}  placeholder='Kanombe,Kigali,Rwanda' /> <span className={styles.searchIconContainer} > <SearchIcon/></span> </div> 
       </div>
     </div>
     {/* submit search btn */}
     <div className={styles.col2Row3}>
     <button className={styles.submitBtn} >Submit</button>
     </div>
-  
+      
   </form>
   </div>
 
