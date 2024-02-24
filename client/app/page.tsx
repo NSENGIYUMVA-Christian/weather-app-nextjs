@@ -3,13 +3,10 @@ import Image from "next/image";
 import styles from "./page.module.scss";
 import { useEffect } from "react";
 import { useAppContext } from "@/context";
-import {result} from "@/dummy/dump"
-
-
 
 
 export default function Home() {
-console.log("result",result)
+
 
   const {name,setName} = useAppContext()
 
