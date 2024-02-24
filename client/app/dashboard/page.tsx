@@ -12,6 +12,7 @@ import {  toast } from 'react-toastify';
 import SearchIcon from '@/components/searchIcon';
 import axios from "axios"
 import { structrurePastWeatherData } from '@/utils/structrurePastWeatherData';
+import { addCurrentDataToLS, addPastDataToLS } from '@/utils/localStorage';
 
 
 
@@ -34,42 +35,46 @@ const dashboard = () => {
     const handleWeatherOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setWeatherSearch({ ...weatherSearch, [event.target.name]: event.target.value });
     };
+
+    /// fetch data
+    const fetchData = async()=>{
+      try {
+        setIsLoading(true)
+        //// get current weather data
+        const {data} = await axios.get(`https://api.weatherapi.com/v1/current.json?key=bd38e0750b764db6a8795807230208&q=${weatherSearch.city}`)
+       /// get past weather data
+       const daysToSubtract = 5;
+       const latitude = data?.location?.lat
+       const longitude = data?.location?.lon
+       const EndDate = data?.location?.localtime.split(' ')[0]
+    //// calculate start date
+       const originalDate = new Date(EndDate); 
+       const subtractedDate = new Date(originalDate); 
+       subtractedDate.setDate(subtractedDate.getDate() - daysToSubtract); 
+       const startDate  = subtractedDate.toISOString().split('T')[0]; 
+       const tempPastData = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&start_date=${startDate}&end_date=${EndDate}&hourly=temperature`)
+        const realPastWeatherData = structrurePastWeatherData(tempPastData?.data)
+       /// set past weather data
+        setPastWeatherData(realPastWeatherData)
+         addPastDataToLS(realPastWeatherData)
+       /// set current weather data
+       setCurrentWeatherData(data)
+       addCurrentDataToLS(data)
+       //go to result page
+       router.push('/dashboard/result')
+      } catch (error) {
+        console.log("weather error",error)
+       }
+       finally{
+        setIsLoading(false)
+       }
+    }
     ///// handle submit of weather query
     const handleWeatherSubmit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
    e.preventDefault()
-   try {
-    setIsLoading(true)
-    //// get current weather data
-    const {data} = await axios.get(`https://api.weatherapi.com/v1/current.json?key=bd38e0750b764db6a8795807230208&q=${weatherSearch.city}`)
-   /// get past weather data
-   const daysToSubtract = 5;
-   const latitude = data?.location?.lat
-   const longitude = data?.location?.lon
-   const EndDate = data?.location?.localtime.split(' ')[0]
-//// calculate start date
-   const originalDate = new Date(EndDate); 
-   const subtractedDate = new Date(originalDate); 
-   subtractedDate.setDate(subtractedDate.getDate() - daysToSubtract); 
-   const startDate  = subtractedDate.toISOString().split('T')[0]; 
-   const tempPastData = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&start_date=${startDate}&end_date=${EndDate}&hourly=temperature`)
-    const realPastWeatherData = structrurePastWeatherData(tempPastData?.data)
-   /// set past weather data
-    setPastWeatherData(realPastWeatherData)
-   /// set current weather data
-   setCurrentWeatherData(data)
-   //go to result page
-   router.push('/dashboard/result')
-  } catch (error) {
-    console.log("weather error",error)
-   }
-   finally{
-    setIsLoading(false)
-   }
+   fetchData()
     }
 
-
-
-      
     /// testing
     useEffect(()=>{
      console.log("weather is =",CurrentWeatherData)

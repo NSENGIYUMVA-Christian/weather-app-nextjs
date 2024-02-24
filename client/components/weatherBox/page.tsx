@@ -17,7 +17,7 @@ const FieldBox:FC<FieldProps> = ({eachWeatherData}) => {
   console.log("wele",eachWeatherData)
 
   return (
-  <div className={styles.fieldContainer} >  
+  <div className={styles.boxContainer} >  
     <p>{date.split(" ")[0] }:{temperature + '\u00B0'+"C"}</p>
   </div>
   )

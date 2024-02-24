@@ -26,4 +26,7 @@ align-items: center;
 .col2{
     border: 5px solid blue;
     flex: 1;
+    display:flex;
+    flex-direction: column;
+    
 }
