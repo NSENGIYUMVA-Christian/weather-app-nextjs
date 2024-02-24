@@ -3,6 +3,9 @@ import React from 'react'
 import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
 import styles from "./page.module.scss"
 import { useAppContext } from '@/context';
+import FieldBox from '@/components/weatherBox/page';
+
+
 
 
 const resultPage = () => {
@@ -16,8 +19,8 @@ const resultPage = () => {
             <h3>Past Weather Details</h3>
             {/* weather data rendering */}
      <div>
-        {PastWeatherData.map((x:any,index:number)=>{
-            return <h2 key={index} >{x.date}</h2>
+        {PastWeatherData.map((data:any,index:any)=>{
+          return <FieldBox key={index} eachWeatherData={data} />
         })}
      </div>
 
