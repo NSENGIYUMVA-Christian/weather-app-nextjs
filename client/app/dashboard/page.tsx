@@ -21,6 +21,8 @@ const dashboard = () => {
     const router = useRouter()
     /// getting global context
     const {auth,setAuth,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData} = useAppContext()
+
+   
     ///// weather state
     const [weatherSearch,setWeatherSearch] = useState<any>({
       city:""
@@ -49,17 +51,14 @@ const dashboard = () => {
    const subtractedDate = new Date(originalDate); 
    subtractedDate.setDate(subtractedDate.getDate() - daysToSubtract); 
    const startDate  = subtractedDate.toISOString().split('T')[0]; 
-
-   //console.log("lat test",latitude)
-   //console.log("lon test",longitude)
-   //console.log("end data",EndDate)
-   //console.log("start date",startDate)
    const tempPastData = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&start_date=${startDate}&end_date=${EndDate}&hourly=temperature`)
     const realPastWeatherData = structrurePastWeatherData(tempPastData?.data)
    /// set past weather data
     setPastWeatherData(realPastWeatherData)
    /// set current weather data
    setCurrentWeatherData(data)
+   //go to result page
+   router.push('/dashboard/result')
   } catch (error) {
     console.log("weather error",error)
    }
