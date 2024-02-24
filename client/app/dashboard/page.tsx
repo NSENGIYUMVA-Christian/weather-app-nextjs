@@ -24,7 +24,9 @@ const dashboard = () => {
     })
     const [isLoading,setIsLoading] = useState<boolean>(false)
     /// weather data
-    const [weatherData,setWeatherData] = useState<any>(null)
+    const [CurrentWeatherData,setCurrentWeatherData] = useState<any>(null)
+    /// past weather data
+    const [PastWeatherData,setPastWeatherData] = useState<any>(null)
 
     //// handle weather on change
     const handleWeatherOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,9 +37,28 @@ const dashboard = () => {
    e.preventDefault()
    try {
     setIsLoading(true)
+    //// get current weather data
     const {data} = await axios.get(`https://api.weatherapi.com/v1/current.json?key=bd38e0750b764db6a8795807230208&q=${weatherSearch.city}`)
+   /// get past weather data
+   const daysToSubtract = 5;
+   const latitude = data?.location?.lat
+   const longitude = data?.location?.lon
+   const EndDate = data?.location?.localtime.split(' ')[0]
+//// calculate start date
+   const originalDate = new Date(EndDate); 
+   const subtractedDate = new Date(originalDate); 
+   subtractedDate.setDate(subtractedDate.getDate() - daysToSubtract); 
+   const startDate  = subtractedDate.toISOString().split('T')[0]; 
+
+   console.log("lat test",latitude)
+   console.log("lon test",longitude)
+   console.log("end data",EndDate)
+   console.log("start date",startDate)
+   const tempPastData = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=-1.94&longitude=30.07&start_date=2024-02-17&end_date=2024-02-24&hourly=temperature`)
+    setPastWeatherData(tempPastData.data)
+   
    /// set weather data
-   setWeatherData(data)
+   setCurrentWeatherData(data)
     console.log("here  is data",data)
   } catch (error) {
     console.log("weather error",error)
@@ -47,11 +68,15 @@ const dashboard = () => {
    }
     }
 
+
+
       
     /// testing
     useEffect(()=>{
-      console.log("weather is =",weatherData)
-    },[weatherData])
+      console.log("weather is =",CurrentWeatherData)
+     // console.log("past data is =",PastWeatherData)
+    
+    },[CurrentWeatherData])
  
     useLayoutEffect(()=>{
        if(!auth)
