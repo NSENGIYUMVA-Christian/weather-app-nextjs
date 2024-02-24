@@ -10,11 +10,15 @@ export function AppWrapper({children}:{
 }){
      ////////auth state
     const [auth,setAuth] = useState(getUserFromLocalStorage())
+      /// weather data
+      const [CurrentWeatherData,setCurrentWeatherData] = useState<any>(null)
+      /// past weather data
+      const [PastWeatherData,setPastWeatherData] = useState<any>(null)
 
   
 
     return (
-        <AppContext.Provider value={{auth,setAuth}} >
+        <AppContext.Provider value={{auth,setAuth,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData}} >
             {children}
         </AppContext.Provider>
     )

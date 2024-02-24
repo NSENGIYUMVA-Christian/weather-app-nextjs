@@ -20,16 +20,13 @@ import { structrurePastWeatherData } from '@/utils/structrurePastWeatherData';
 const dashboard = () => {
     const router = useRouter()
     /// getting global context
-    const {auth,setAuth} = useAppContext()
+    const {auth,setAuth,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData} = useAppContext()
     ///// weather state
     const [weatherSearch,setWeatherSearch] = useState<any>({
       city:""
     })
     const [isLoading,setIsLoading] = useState<boolean>(false)
-    /// weather data
-    const [CurrentWeatherData,setCurrentWeatherData] = useState<any>(null)
-    /// past weather data
-    const [PastWeatherData,setPastWeatherData] = useState<any>(null)
+  
 
     //// handle weather on change
     const handleWeatherOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {

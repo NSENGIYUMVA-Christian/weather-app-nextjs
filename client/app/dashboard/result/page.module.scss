@@ -1,0 +1,28 @@
+$primary-navy:#2A2F4E;
+$darkgrey:#838AA2;
+$blue:#034EA2;
+$skyBlue:#00608B;
+$otherBlue:#4187B0;
+$white:#FFFFFF;
+
+
+.mainContainer{
+border: 1px solid red;
+height:100vh;
+display:flex;
+justify-content: center;
+align-items: center;
+}
+
+
+.col1{
+    border: 5px solid green;
+    width: 100%;
+    height: 100%;
+    max-width:359px;
+    max-height: 916px;
+}
+.col2{
+    border: 5px solid blue;
+    flex: 1;
+}
