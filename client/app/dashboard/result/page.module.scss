@@ -8,12 +8,12 @@ $white:#FFFFFF;
 
 .mainContainer{
 border: 1px solid red;
+padding:55px 46px;
 height:100vh;
 display:flex;
 justify-content: center;
 align-items: center;
 }
-
 
 .col1{
     border: 5px solid green;
@@ -21,6 +21,7 @@ align-items: center;
     height: 100%;
     max-width:359px;
     max-height: 916px;
+    border-radius: 20px;
 }
 .col2{
     border: 5px solid blue;
