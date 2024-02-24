@@ -29,7 +29,7 @@ const resultPage = () => {
     <div className={styles.mainContainer} >
         {/* col 1 */}
         <div className={styles.col1} >
-            <h3>Past Weather Details</h3>
+            <h3 className={`${styles.col1title} ${bicycletteRegular.className}`} >Past Weather Details</h3>
             {/* weather data rendering */}
      <div>  
         {PastWeatherData?.map((data:any,index:any)=>{
