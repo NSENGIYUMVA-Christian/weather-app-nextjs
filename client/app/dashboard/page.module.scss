@@ -2,17 +2,33 @@ $primary-navy:#2A2F4E;
 $darkgrey:#838AA2;
 $blue:#034EA2;
 $skyBlue:#00608B;
+$otherBlue:#4187B0;
 $white:#FFFFFF;
 
 
 .mainContainer{
-
+position: relative;
     display: flex;
     height: 100vh;
     img{
         width:100%;
         height: 100%;
     }
+}
+
+.currentUser{
+    position:absolute;
+    top:35px;
+    right:70px;
+    width:150px;
+    height: 40px;
+    border-radius: 26px;
+    background-color: $otherBlue;
+    color: $white;
+    padding: 12px 18px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 13px;
 }
 
 .col2{

@@ -16,6 +16,7 @@ import { structrurePastWeatherData } from '@/utils/structrurePastWeatherData';
 
 
 
+
 const dashboard = () => {
     const router = useRouter()
     /// getting global context
@@ -101,7 +102,7 @@ const dashboard = () => {
   </div>
   {/* col-2 */}
   <div className={styles.col2} >
-  <h3>Hi {first_name}</h3> 
+  <span className={`${styles.currentUser} ${sofiaProBold.className} `} >{last_name} {first_name}</span> 
  
   <form>
     <div className={styles.col2Row1} >
