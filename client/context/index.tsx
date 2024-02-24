@@ -14,11 +14,13 @@ export function AppWrapper({children}:{
       const [CurrentWeatherData,setCurrentWeatherData] = useState<any>(null)
       /// past weather data
       const [PastWeatherData,setPastWeatherData] = useState<any>(null)
+      /// loading 
+      const [isLoading,setIsLoading] = useState<boolean>(false)
 
   
 
     return (
-        <AppContext.Provider value={{auth,setAuth,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData}} >
+        <AppContext.Provider value={{auth,setAuth,isLoading,setIsLoading,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData}} >
             {children}
         </AppContext.Provider>
     )
