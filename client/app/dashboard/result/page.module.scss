@@ -47,13 +47,51 @@ align-items: center;
 }
 }
 .col2{
-    border: 5px solid blue;
     height: 100%;
     flex: 1;
    display: flex;
    justify-content: center;
-   align-items: center;
+   align-items: center;  
+    background: radial-gradient(circle, #D0DDE4, white);
+}
 
-  
+.currentWeatherContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: 444px;
+    max-height: 444px;
     
+}
+.currentWeather{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   color:$skyBlue;
+   font-size: 24px;
+text-align: center;
+
+}
+
+.sunIcon{
+ 
+}
+.currentLocationTitle{
+    font-size: 28px;
+    line-height: 32px;
+    position: absolute;
+    top:19%;
+    z-index: 1000;
+    color:$primary-navy
+}
+.currentLocationSubTitle{
+    font-size: 18px;
+}
+.currentWeatherData{
+    font-size: 24px;
+    white-space: nowrap;
 }
