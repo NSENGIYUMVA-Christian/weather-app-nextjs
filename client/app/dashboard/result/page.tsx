@@ -28,14 +28,17 @@ const resultPage = () => {
   return (
     <div className={styles.mainContainer} >
         {/* col 1 */}
-        <div className={styles.col1} >
-            <h3 className={`${styles.col1title} ${bicycletteRegular.className}`} >Past Weather Details</h3>
+        <div className={`${styles.col1} ${bicycletteRegular.className}`} >
+            <p className={`${styles.col1title} `} >Past Weather Details</p>
             {/* weather data rendering */}
-     <div>  
+     <div className={styles.pastWeatherDtaContainer} >  
         {PastWeatherData?.map((data:any,index:any)=>{
           return <FieldBox key={index} eachWeatherData={data} />
         })}
      </div>
+     {/* view more */}
+     
+     <a className={styles.viewMoreBtn} >View More</a>
         </div >
         {/* col 2 */}
         <div className={styles.col2}>
