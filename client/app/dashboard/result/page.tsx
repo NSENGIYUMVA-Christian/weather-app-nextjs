@@ -22,8 +22,6 @@ const resultPage = () => {
      
      },[])
      
-     console.log("llll",PastWeatherData);
-     console.log("where",CurrentWeatherData?.location?.name);
      const AmOrPm = CurrentWeatherData?.location?.localtime.split(" ")[1].split(":")[0] <= 12 ? "AM" : "PM";
   return (
     <div className={styles.mainContainer} >
@@ -42,10 +40,13 @@ const resultPage = () => {
         </div >
         {/* col 2 */}
         <div className={styles.col2}>
-      <h3>Current Weather</h3>
+          <div>
+          <h3>Current Weather</h3>
      <p> {CurrentWeatherData?.location?.region} {CurrentWeatherData?.location?.country} {CurrentWeatherData?.location?.localtime.split(" ")[1]} {AmOrPm} </p> 
       <SunnyWeatherIcon/>
       <p>{CurrentWeatherData?.current?.temp_c}</p>
+          </div>
+   
         </div>
     </div>
   )
