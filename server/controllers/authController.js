@@ -13,11 +13,11 @@ const register = async (req, res) => {
   const { first_name, last_name, email, username, password } = req.body;
 
   if (!first_name || !last_name || !email || !username || !password) {
-    return res.send("Please fill all fields");
+    return res.json({ msg: "Please fill all fields" });
   }
 
   if (password.length < 5) {
-    return res.send("Password must be at least 5 characters");
+    return res.json({ msg: "Password must be at least 5 characters" });
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -40,11 +40,21 @@ const register = async (req, res) => {
             return res.status(500).json({ error: "Internal server error" });
           }
 
-          return res.json({ msg: "Registration successful" });
+          return res.json({ msg: "Registration successful", success: true });
         }
       );
     }
   });
+};
+
+/// update user
+const updateUser = async (req, res) => {
+  try {
+    const { first_name, last_name, email, username, password } = req.body;
+    if (password.length < 5) {
+      return res.json({ msg: "Password must be at least 5 characters" });
+    }
+  } catch (error) {}
 };
 
 // Login

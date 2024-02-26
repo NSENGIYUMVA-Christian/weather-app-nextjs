@@ -55,6 +55,7 @@ const page = () => {
           e.preventDefault()
           try {
             //  const {data} = await axios.post("http://localhost:8080/api/v1/auth/register",registerData)
+          
             console.log("update data",userData)
               toast.success("Update success")
           } catch (error) {

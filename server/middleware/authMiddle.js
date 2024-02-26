@@ -11,7 +11,6 @@ const authenticateUser = async (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     const payload = isTokenValid({ token });
-
     //destructuring payload
     const { id, first_name, last_name, email, username } = payload;
     req.user = { id, first_name, last_name, email, username };
