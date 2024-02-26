@@ -13,23 +13,17 @@ import SearchIcon from '@/components/searchIcon';
 import axios from "axios"
 import { structrurePastWeatherData } from '@/utils/structrurePastWeatherData';
 import { addCurrentDataToLS, addPastDataToLS } from '@/utils/localStorage';
-
-
-
+import Link from 'next/link';
 
 
 const dashboard = () => {
     const router = useRouter()
     /// getting global context
     const {auth,setAuth,isLoading,setIsLoading,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData} = useAppContext()
-
-   
     ///// weather state
     const [weatherSearch,setWeatherSearch] = useState<any>({
       city:""
     })
-
-  
 
     //// handle weather on change
     const handleWeatherOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +97,7 @@ const dashboard = () => {
   </div>
   {/* col-2 */}
   <div className={styles.col2} >
-  <span className={`${styles.currentUser} ${sofiaProBold.className} `} >{last_name} {first_name}</span> 
+  <span className={`${styles.currentUser} ${sofiaProBold.className} `} > <Link href="/dashboard/profile" >{last_name} {first_name}</Link> </span> 
  
   <form>
     <div className={styles.col2Row1} >

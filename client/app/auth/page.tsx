@@ -58,11 +58,16 @@ import {  toast } from 'react-toastify';
           const {data} = await axios.post("http://localhost:8080/api/v1/auth/login",loginData)
         /// notify user
         console.log("testttt",data)
+        // check if account is blocked
+        if(data?.isAccountBlocked)
+        {
+          toast.error(data?.msg)
+          return
+        }
         if(data?.success)
         {
                // set temp auth
        setAuth(data?.tempUser);
-      
        /// keeping response in local storage
        addUserToLocalStorage(data?.tempUser);
           toast.success("Login success")

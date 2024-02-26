@@ -119,7 +119,11 @@ const login = async (req, res) => {
 
     // If account is blocked
     if (user.is_blocked) {
-      return res.json({ msg: "Account is blocked" });
+      return res.json({
+        msg: "Your Account has been blocked",
+        isAccountBlocked: true,
+        user,
+      });
     }
 
     // Compare password
@@ -179,7 +183,10 @@ const login = async (req, res) => {
               }
             }
           );
-          return res.json({ msg: "Account is blocked" });
+          return res.json({
+            msg: "Account is blocked",
+            isAccountBlocked: true,
+          });
         } else {
           // Update the login attempts count in the database
           pool.query(
