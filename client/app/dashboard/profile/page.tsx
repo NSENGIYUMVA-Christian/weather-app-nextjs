@@ -89,14 +89,16 @@ const page = () => {
         <div className={styles.field} >
             <label htmlFor="RepeatPassword" className={`${sofiaProRegular.className}`} >Repeat Password</label>
     <input id='Password' className={sofiaProMedium.className} type='password' name='password' value={""} placeholder='*****'    />
-    </div>
-
-    
-     
-   
+    </div>   
   </form>
   </div>
+
 </div>
+  {/* Row 3 */}
+  <div className={styles.rowCol3}>
+  <button className={`${styles.updateBtn}`} >Update</button>
+  <button className={`${styles.cancelBtn}`} >Cancel</button>
+  </div>
     </section>
   )
 }

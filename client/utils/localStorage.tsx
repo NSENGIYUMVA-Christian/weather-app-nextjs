@@ -8,7 +8,7 @@ export const addUserToLocalStorage = (user:any) => {
   
   export const getUserFromLocalStorage = () => {
     const result = localStorage.getItem("userData");
-    return result ? JSON.parse(result) : null;
+    return result ? JSON?.parse(result) : null;
   };
 ////////////////////weather data
 

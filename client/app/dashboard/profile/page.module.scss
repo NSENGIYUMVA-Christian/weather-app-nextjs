@@ -4,10 +4,12 @@ $white:white;
 $primary-navy:#2A2F4E;
 $blue:#1F65B3;
 $gray:#727C94;
+$grey:#DDDFE2;
 $darkgrey:#838AA2;
+$skyBlue:#00608B;
 
 .main{
-    border: 2px solid blue;
+  
     height: 100vh;
     overflow-y: auto;
  padding: 40px 125px;
@@ -16,7 +18,7 @@ $darkgrey:#838AA2;
 
 .row1{
     min-height: 80px;
-    border: 1px solid green;
+  
     margin-bottom: 65px;
 }
 .backBtn{
@@ -48,14 +50,14 @@ $darkgrey:#838AA2;
     }
 
 .row2{
-    border: 5px solid rgb(163, 131, 4);
+  
     display: flex;
     gap:22px
 }
 .rowCol1{
     width: 370px;
     height: 574px;
- 
+    border-radius: 20px;
     background-color: $white;
     padding:74px 65px
 }
@@ -102,11 +104,12 @@ $darkgrey:#838AA2;
 }
 
 .rowCol2{
+    border-radius: 20px;
     background-color: $white;
     width:755px;
     height: 574px;
     padding:54px 71px;
-    border: 4px solid rgb(10, 113, 108);
+    margin-bottom: 70px;
     form{
         width:100%;
         max-width:553px;
@@ -141,4 +144,32 @@ $darkgrey:#838AA2;
             color: $primary-navy
           }
     }
+}
+
+
+.rowCol3{
+  display: flex;
+  justify-content: end;
+  gap:23px;
+  padding-right: 13px;
+  button{
+    width:260px;
+    height: 56px;
+    padding:16px 26px;
+    border-radius: 8px;
+    border:none;
+    line-height: 24px;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+  }
+  
+}
+
+.updateBtn{
+    background-color:$skyBlue;
+    color:$white
+}
+.cancelBtn{
+    background-color:$grey;
+    color:$skyBlue
 }

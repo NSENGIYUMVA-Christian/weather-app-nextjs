@@ -56,14 +56,24 @@ import {  toast } from 'react-toastify';
       }
       try {
           const {data} = await axios.post("http://localhost:8080/api/v1/auth/login",loginData)
-              // set temp auth
-       setAuth(data.user);
-        /// keeping response in local storage
-        addUserToLocalStorage(data.user);
         /// notify user
-        toast.success("Login success")
+        console.log("testttt",data)
+        if(data?.success)
+        {
+               // set temp auth
+       setAuth(data?.tempUser);
+      
+       /// keeping response in local storage
+       addUserToLocalStorage(data?.tempUser);
+          toast.success("Login success")
         /// go to dashboard
         router.push('/dashboard')
+        return
+        }
+        else{
+          toast.warning("Please provide valid credentials")
+        }
+       
           //console.log("data is",data)
       } catch (error) {
           console.log("there was an error",error)
