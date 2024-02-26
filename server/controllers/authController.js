@@ -4,9 +4,10 @@ const {
   getUserByUserName,
   addUserByAllValues,
 } = require("../queries/authQueries");
+
 const { createJWT } = require("../utils/jwt");
 const { createTokenUSer } = require("../utils/createTokenUser");
-const { getUserByID } = require("../queries/users");
+const { getUserByID, updateUserDB } = require("../queries/users");
 
 // Register
 const register = async (req, res) => {
@@ -50,11 +51,57 @@ const register = async (req, res) => {
 /// update user
 const updateUser = async (req, res) => {
   try {
+    const { id } = req.params;
     const { first_name, last_name, email, username, password } = req.body;
-    if (password.length < 5) {
-      return res.json({ msg: "Password must be at least 5 characters" });
+
+    // Check if password is provided and meets minimum length requirement
+    if (password && password.length < 5) {
+      return res
+        .status(400)
+        .json({ error: "Password must be at least 5 characters" });
     }
-  } catch (error) {}
+
+    // Hash the password if provided
+    let hashedPassword;
+    if (password) {
+      hashedPassword = await bcrypt.hash(password, 10);
+    }
+
+    // Check if the user exists
+    const existingUser = await pool.query(getUserByID, [id]);
+    if (existingUser.rows.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Update user information
+    const updateUserQuery = `
+      UPDATE users
+      SET 
+        first_name = $1,
+        last_name = $2,
+        email = $3,
+        username = $4
+        ${
+          password ? ", password = $5" : ""
+        }  -- Only include password update if provided
+      WHERE 
+        id = $${
+          password ? "6" : "5"
+        }  -- Adjust the parameter index based on password presence
+      RETURNING id;
+    `;
+
+    const updateUserValues = password
+      ? [first_name, last_name, email, username, hashedPassword, id]
+      : [first_name, last_name, email, username, id];
+
+    await pool.query(updateUserQuery, updateUserValues);
+
+    return res.status(200).json({ message: "User updated successfully" });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 // Login
@@ -215,4 +262,4 @@ const login = async (req, res) => {
   });
 };
 
-module.exports = { login, register };
+module.exports = { login, register, updateUser };

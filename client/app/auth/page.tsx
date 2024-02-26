@@ -94,7 +94,15 @@ import {  toast } from 'react-toastify';
         }
       try {
           const {data} = await axios.post("http://localhost:8080/api/v1/auth/register",registerData)
-          toast.success("Register success")
+        /// if success
+          if(data?.success)
+         {
+          toast.success(data?.msg)
+          setHasAccountAlready(true)
+          return
+         }
+         toast.warning(data.msg)
+          
       } catch (error) {
           console.log("there was an error")
       }
