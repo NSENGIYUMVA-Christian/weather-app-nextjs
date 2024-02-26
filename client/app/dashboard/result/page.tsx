@@ -19,7 +19,7 @@ const resultPage = () => {
      const {triggerFetch,setTriggerFetch,auth,setAuth,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData} = useAppContext()
      
      useEffect(()=>{
-        console.log("99999")
+   
      /// set current data
      setCurrentWeatherData(getCurrentDataFromLocalStorage())
      /// set past data

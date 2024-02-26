@@ -43,8 +43,23 @@ const page = () => {
       <p className={`${sofiaProBold.className} `}  >User</p>
       </div>
       {/* part 2 */}
-     <div>
-
+     <div className={`${styles.rowCol1ContentPart2} `}>
+         <div className={`${styles.rowCol1ContentPart2FieldBox} `} >
+        <span className={sofiaProRegular.className} >Email</span>
+        <p className={`${sofiaProMedium.className}`}>{email}</p>
+         </div>
+         <div className={`${styles.rowCol1ContentPart2FieldBox} `} >
+        <span className={sofiaProRegular.className}>First Name</span>
+        <p className={`${sofiaProMedium.className}`} >{first_name}</p>
+         </div>
+         <div className={`${styles.rowCol1ContentPart2FieldBox} `} >
+        <span className={sofiaProRegular.className}>Last Name</span>
+        <p className={`${sofiaProMedium.className}`} >{last_name}</p>
+         </div>
+         <div className={`${styles.rowCol1ContentPart2FieldBox} `} >
+        <span className={sofiaProRegular.className}>Username</span>
+        <p className={`${sofiaProMedium.className}`} >{username}</p>
+         </div>
      </div>
     </div>
   </div>
