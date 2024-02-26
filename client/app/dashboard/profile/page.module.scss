@@ -4,10 +4,12 @@ $white:white;
 $primary-navy:#2A2F4E;
 $blue:#1F65B3;
 $gray:#727C94;
+$darkgrey:#838AA2;
 
 .main{
     border: 2px solid blue;
     height: 100vh;
+    overflow-y: auto;
  padding: 40px 125px;
  background-color: $bgColor;
 }
@@ -103,5 +105,40 @@ $gray:#727C94;
     background-color: $white;
     width:755px;
     height: 574px;
+    padding:54px 71px;
     border: 4px solid rgb(10, 113, 108);
+    form{
+        width:100%;
+        max-width:553px;
+       display:flex;
+       flex-direction: column;
+       gap:5px;
+    }
+    .field{
+        border:1px solid $darkgrey;
+        width:100%;
+        height: 56px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        padding:0px 16px;
+        gap:2px;
+        margin-bottom: 16px;
+        label{
+            color:$darkgrey
+        }
+        input{
+            border:none;
+            width:100%;
+            height:100%;
+            border-radius: 8px; 
+        }
+        input:focus{
+            border: none;
+            outline: none;
+        }
+        input::placeholder {
+            color: $primary-navy
+          }
+    }
 }

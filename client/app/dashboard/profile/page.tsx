@@ -64,7 +64,38 @@ const page = () => {
     </div>
   </div>
   {/* col2 */}
-  <div  className={styles.rowCol2}>Col2</div>
+  <div  className={styles.rowCol2}>
+  <form >
+      <div className={styles.field} >
+      <label htmlFor="First" className={`${sofiaProRegular.className}`}  >First name</label>
+      <input id='First' type='text' name='first_name' value={first_name}  placeholder='john'   />
+      </div>
+          <div className={styles.field} >
+              <label htmlFor="Last" className={`${sofiaProRegular.className}`} >Last name</label>
+    <input id='Last' className={sofiaProMedium.className} type='text' name='last_name' value={last_name}    />
+    </div>
+        <div className={styles.field} >
+            <label htmlFor="Email" className={`${sofiaProRegular.className}`} >Email</label>
+    <input id='Email' className={sofiaProMedium.className} type='email' name='email' value={email}    />
+    </div>
+        <div className={styles.field} >
+            <label htmlFor="Username" className={`${sofiaProRegular.className}`} >Username</label>
+    <input id='Username' className={sofiaProMedium.className} type='text' name='username' value={username}    />
+    </div>
+        <div className={styles.field} >
+            <label htmlFor="Password" className={`${sofiaProRegular.className}`} >Password</label>
+    <input id='Password' className={sofiaProMedium.className} type='password' name='password' value={""} placeholder='*****'    />
+    </div>
+        <div className={styles.field} >
+            <label htmlFor="RepeatPassword" className={`${sofiaProRegular.className}`} >Repeat Password</label>
+    <input id='Password' className={sofiaProMedium.className} type='password' name='password' value={""} placeholder='*****'    />
+    </div>
+
+    
+     
+   
+  </form>
+  </div>
 </div>
     </section>
   )
