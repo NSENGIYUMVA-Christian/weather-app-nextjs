@@ -5,6 +5,7 @@ const app = express();
 const session = require("express-session");
 ///// routers imports
 const authRouter = require("./routers/authRouter");
+const imageRouter = require("./routers/uploadRouter");
 
 // Port
 const port = process.env.PORT || 8080;
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 });
 /// auth route middleware
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/image", imageRouter);
 
 app.listen(port, () =>
   console.log(`The server is listening to port ${port}...`)
