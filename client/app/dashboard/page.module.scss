@@ -1,0 +1,129 @@
+$primary-navy:#2A2F4E;
+$darkgrey:#838AA2;
+$blue:#034EA2;
+$skyBlue:#00608B;
+$otherBlue:#4187B0;
+$white:#FFFFFF;
+
+
+.mainContainer{
+position: relative;
+    display: flex;
+    height: 100vh;
+    img{
+        width:100%;
+        height: 100%;
+    }
+}
+
+.currentUser{
+    position:absolute;
+    top:35px;
+    right:70px;
+    width:150px;
+    height: 40px;
+    border-radius: 26px;
+    background-color: $otherBlue;
+    color: $white;
+    padding: 12px 18px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 13px;
+}
+
+.col2{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form{
+   
+        width:100%;
+        height:100%;
+        max-width:553px;
+        max-height: 248px;
+       display:flex;
+       flex-direction: column;
+    
+    }
+}
+
+.col2Row1{
+    height:72px;
+    margin-bottom: 32px;
+
+    .title{
+        color:$primary-navy;
+        line-height: 32px;
+    text-align: left;
+    margin-bottom: 16px;
+    font-weight: 500;
+       }
+       p{
+        color:$darkgrey;
+        line-height: 24px;
+        font-size: 16px;
+        letter-spacing: 0px;
+       }
+}
+
+.col2Row2{
+  
+    display:flex;
+    flex-direction: column;
+    .field{
+        border:1px solid $darkgrey;
+        width:100%;
+        height: 56px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        padding:0px 16px;
+        gap:2px;
+        margin-bottom: 16px;
+        label{
+            color:$darkgrey
+        }
+        input{
+            border:none;
+            width:100%;
+            height:100%;
+            border-radius: 8px; 
+        }
+        input:focus{
+            border: none;
+            outline: none;
+        }
+        input::placeholder {
+            color: $primary-navy
+          }
+    }
+  
+}
+
+.searchContainer{
+    display: flex;
+}
+.searchIconContainer{
+
+    padding:0px 5px;
+}
+
+.col2Row3{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.submitBtn{
+    background-color:$skyBlue;
+    height: 56px;
+    color:$white;
+    border-radius: 8px;
+    border:none;
+    line-height: 24px;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    margin-bottom: 32px;
+}
