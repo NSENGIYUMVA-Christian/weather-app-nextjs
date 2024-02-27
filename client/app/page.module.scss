@@ -17,6 +17,7 @@ $white:#FFFFFF;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding:0px 10px;
     form{
         width:100%;
         max-width:553px;
@@ -27,7 +28,6 @@ $white:#FFFFFF;
 }
 
 .col2Row1{
- 
     height:72px;
     margin-bottom: 32px;
     .title{
@@ -112,3 +112,31 @@ $white:#FFFFFF;
         color:$darkgrey
     }
 }
+
+
+////small screen
+@media (max-width:768px) {
+    .mainContainer{
+        background-image: url("../public/images/banner.svg");
+        justify-content: center;
+        padding:0px 10px
+    }
+    .col1{
+        display: none;
+    }
+    .col2{
+        flex:none;
+        background-color: $white;
+        justify-self: center;
+        align-self: center;
+        width:100%;
+       min-width:300px ;
+       max-width:388px ;
+       border-radius: 8px;
+       padding:5px
+    }
+}
+
+
+//// tablet screen
+

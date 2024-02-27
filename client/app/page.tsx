@@ -113,7 +113,7 @@ const [isLoading,setIsLoading] = useState<boolean>(false)
     return (
       <section className={styles.mainContainer} >
         {/* col 1 */}
-        <div>
+        <div className={styles.col1} >
         <Image
       src={banner}
       alt="weather banner"
