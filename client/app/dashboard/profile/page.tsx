@@ -77,9 +77,6 @@ const page = () => {
           {
             toast.warning(data?.msg)
           }
-          
-          
-           
           } catch (error) {
             toast.warning("There was an error")
              // console.log("there was an error")

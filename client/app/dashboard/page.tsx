@@ -79,7 +79,7 @@ const dashboard = () => {
     useLayoutEffect(()=>{
        if(!auth)
        {
-        router.push('/auth')
+        router.push('/')
        }
     },[])
 
