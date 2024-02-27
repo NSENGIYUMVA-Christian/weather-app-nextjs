@@ -54,12 +54,35 @@ const page = () => {
         const submitUpdatedData = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
           e.preventDefault()
           try {
-            //  const {data} = await axios.post("http://localhost:8080/api/v1/auth/register",registerData)
+            /// check if password is provided
           
-            console.log("update data",userData)
-              toast.success("Update success")
+              if(userData.password !== userData.repeatPassword )
+              {
+                console.log("new pass",userData.password)
+                console.log("rep pass",userData.repeatPassword)
+                toast.warning("Password doesn't match")
+                return
+              }
+
+  const {data} = await axios.patch(`http://localhost:8080/api/v1/auth/update/${auth?.id}`,userData)
+         console.log("temp",data)
+             if(data?.success)
+          {
+            console.log("update data",data)
+            setAuth(data.user)
+            setUserData(data.user)
+            toast.success(data?.msg)
+          }
+          if(!data?.success)
+          {
+            toast.warning(data?.msg)
+          }
+          
+          
+           
           } catch (error) {
-              console.log("there was an error")
+            toast.warning("There was an error")
+             // console.log("there was an error")
           }
         };
 

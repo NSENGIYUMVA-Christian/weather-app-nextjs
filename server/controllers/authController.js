@@ -49,6 +49,8 @@ const register = async (req, res) => {
 };
 
 /// update user
+// Update user
+// Update user
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -61,16 +63,24 @@ const updateUser = async (req, res) => {
         .json({ error: "Password must be at least 5 characters" });
     }
 
-    // Hash the password if provided
-    let hashedPassword;
-    if (password) {
-      hashedPassword = await bcrypt.hash(password, 10);
-    }
-
     // Check if the user exists
     const existingUser = await pool.query(getUserByID, [id]);
     if (existingUser.rows.length === 0) {
       return res.status(404).json({ error: "User not found" });
+    }
+
+    // Check if the new username already exists in the database
+    if (username !== existingUser.rows[0].username) {
+      const usernameExists = await pool.query(getUserByUserName, [username]);
+      if (usernameExists.rows.length > 0) {
+        return res.json({ msg: "Username already exists" });
+      }
+    }
+
+    // Hash the password if provided
+    let hashedPassword;
+    if (password) {
+      hashedPassword = await bcrypt.hash(password, 10);
     }
 
     // Update user information
@@ -88,16 +98,20 @@ const updateUser = async (req, res) => {
         id = $${
           password ? "6" : "5"
         }  -- Adjust the parameter index based on password presence
-      RETURNING id;
+      RETURNING *;  -- Return all updated columns
     `;
 
     const updateUserValues = password
       ? [first_name, last_name, email, username, hashedPassword, id]
       : [first_name, last_name, email, username, id];
 
-    await pool.query(updateUserQuery, updateUserValues);
+    const updatedUser = await pool.query(updateUserQuery, updateUserValues);
 
-    return res.status(200).json({ message: "User updated successfully" });
+    return res.status(200).json({
+      success: true,
+      msg: "User updated successfully",
+      user: updatedUser.rows[0], // Return the updated user data
+    });
   } catch (error) {
     console.error("Error updating user:", error);
     return res.status(500).json({ error: "Internal server error" });
