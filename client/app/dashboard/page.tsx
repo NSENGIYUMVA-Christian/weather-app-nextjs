@@ -88,7 +88,7 @@ const dashboard = () => {
   return (<>
  {auth && <div className={`${styles.mainContainer} `}>
   {/* col 1 */}
-  <div>
+  <div className={`${styles.col1}`} >
     {/* weather banner */}
     <Image
       src={banner}

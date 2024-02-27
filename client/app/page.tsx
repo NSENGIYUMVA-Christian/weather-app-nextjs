@@ -53,6 +53,8 @@ const [isLoading,setIsLoading] = useState<boolean>(false)
         return
       }
       try {
+          // trigger loading
+          setIsLoading(true)
           const {data} = await axios.post("http://localhost:8080/api/v1/auth/login",loginData)
         // check if account is blocked
         if(data?.isAccountBlocked)
@@ -78,6 +80,10 @@ const [isLoading,setIsLoading] = useState<boolean>(false)
           //console.log("data is",data)
       } catch (error) {
           console.log("there was an error",error)
+      }
+      finally{
+          // disable login
+          setIsLoading(false)
       }
     };
     const submitRegisterData = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
