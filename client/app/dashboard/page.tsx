@@ -97,7 +97,7 @@ const dashboard = () => {
   </div>
   {/* col-2 */}
   <div className={styles.col2} >
-  <span className={`${styles.currentUser} ${sofiaProBold.className} `} > <Link href="/dashboard/profile" >{last_name} {first_name}</Link> </span> 
+   <Link href="/dashboard/profile" className={`${styles.currentUser} ${sofiaProBold.className} `}>{last_name} {first_name}</Link>  
  
   <form>
     <div className={styles.col2Row1} >
