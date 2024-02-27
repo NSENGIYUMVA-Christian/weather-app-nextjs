@@ -56,7 +56,8 @@ align-items: center;
    justify-content: center;
    align-items: center;  
     background: radial-gradient(circle, #D0DDE4, white);
-    gap:0px 10px
+    gap:0px 10px;
+  
 }
 
 .currentWeatherContainer{
@@ -107,22 +108,31 @@ text-align: center;
         gap:10px
     }
     .currentLocationTitle{
-        display: none;
+        font-size: 24px;
+        line-height: 28px;
+        top:5px;
+      
     }
     .col1{
         width: 100%;
         height: 100%;
         max-width:100%;
+        min-width: 300px;
         font-size: 24px;
         padding-top: 10px;
         .pastWeatherDtaContainer{
-       
       display: grid;
       grid-template-columns: 1fr 1fr;
         }
         .col1title{
             margin-bottom: 30px;
         }
+    }
+    .col2{
+      
+    }
+    .currentWeatherData{
+        font-size: 20px;
     }
    
 }
@@ -131,9 +141,13 @@ text-align: center;
         flex-direction: column-reverse;
         gap:10px
     }
-    .currentLocationTitle{
-        display: none;
-    }
+   
+        .currentLocationTitle{
+            font-size: 20px;
+            line-height: 18px;
+            top:10px;
+          
+        }
     .col1{
         width: 100%;
         height: 100%;
@@ -149,5 +163,9 @@ text-align: center;
             margin-bottom: 30px;
         }
     }
+    .currentWeatherData{
+        font-size: 17px;
+    }
+ 
    
 }
