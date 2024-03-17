@@ -2,6 +2,7 @@ $primary-navy:#2A2F4E;
 $darkgrey:#838AA2;
 $blue:#034EA2;
 $skyBlue:#00608B;
+$DarkSkyBlue:#013147;
 $otherBlue:#4187B0;
 $white:#FFFFFF;
 
@@ -30,6 +31,10 @@ position: relative;
     line-height: 16px;
     font-size: 13px;
 }
+.currentUser:hover{
+    background-color: $DarkSkyBlue;
+    transform: scale(1.01);
+    }
 
 .col2{
     flex: 1;
@@ -37,6 +42,7 @@ position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding:0px 10px;
     form{
    
         width:100%;
@@ -126,4 +132,32 @@ position: relative;
     font-size: 18px;
     letter-spacing: 0.2px;
     margin-bottom: 32px;
+    cursor: pointer;
+}
+.submitBtn:hover{
+background-color: $DarkSkyBlue;
+transform: scale(1.01);
+}
+
+////small screen
+@media (max-width:768px){
+    .mainContainer{
+        background-image: url("../../public/images/banner.svg");
+        justify-content: center;
+        padding:0px 10px
+    }
+    .col1{
+        display: none;
+    }
+    .col2{
+        flex:none;
+        background-color: $white;
+        justify-self: center;
+        align-self: center;
+        width:100%;
+       min-width:300px ;
+       max-width:388px ;
+       border-radius: 8px;
+       padding:5px
+    }
 }

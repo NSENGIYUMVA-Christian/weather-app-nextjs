@@ -36,7 +36,7 @@ const resultPage = () => {
             {/* weather data rendering */}
      <div className={styles.pastWeatherDtaContainer} >  
         {PastWeatherData?.map((data:any,index:any)=>{
-          return <FieldBox key={index} eachWeatherData={data} />
+          return <article  key={index}><FieldBox eachWeatherData={data} /></article> 
         })}
      </div>
      {/* view more */}

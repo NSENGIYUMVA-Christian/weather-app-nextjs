@@ -3,6 +3,9 @@ import React, { useEffect,useState } from 'react'
 import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
 import styles from "./page.module.scss"
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { removeUserFromLocalStorage} from "@/utils/localStorage";
+
 import leftArrowIcon from "../../../public/images/leftArrow.svg"
 import { useAppContext } from '@/context';
 import { getCurrentDataFromLocalStorage , getPastDataFromLocalStorage} from '@/utils/localStorage';
@@ -17,7 +20,9 @@ import axios from "axios"
 const page = () => {
     /// getting global context
     const {triggerFetch,setTriggerFetch,auth,setAuth,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData} = useAppContext()
-   
+    const router = useRouter()
+    const [file, setFile] = useState<File | null>(null);
+
     //user data
     const [userData,setUserData] = useState<any>({
         username:auth?.username,
@@ -28,6 +33,12 @@ const page = () => {
         email:auth?.email
     })
 
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (event.target.files) {
+        setFile(event.target.files[0]);
+      }
+    };
+
     useEffect(()=>{
       //set user data
       setUserData({
@@ -36,14 +47,22 @@ const page = () => {
         repeatPassword:"",
         first_name:auth?.first_name,
         last_name:auth?.last_name,
-        email:auth?.email
+        email:auth?.email,
+        img_url:auth?.img_url || ""
       })
       /// set current data
       setCurrentWeatherData(getCurrentDataFromLocalStorage())
       /// set past data
       setPastWeatherData(getPastDataFromLocalStorage())
       },[])
-
+      /// handle logout
+      const handleLogout = ()=>{
+        console.log("logout")
+        removeUserFromLocalStorage()
+        setAuth(null);
+        router.push('/')
+        toast.success("Logout success")
+      }
       ///// update user form
         ///// handle register form change
     const handleUserDataChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +72,10 @@ const page = () => {
         //// update user submit
         const submitUpdatedData = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
           e.preventDefault()
+          if (!file) return;
+
+          const formData = new FormData();
+          formData.append('image', file);
           try {
             /// check if password is provided
           
@@ -63,7 +86,14 @@ const page = () => {
                 toast.warning("Password doesn't match")
                 return
               }
-
+/////  uploading image
+const response = await axios.post(`http://localhost:8080/api/v1/image/upload/${auth?.id}`, formData, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
+console.log("image upload success",response)
+////updating users
   const {data} = await axios.patch(`http://localhost:8080/api/v1/auth/update/${auth?.id}`,userData)
          console.log("temp",data)
              if(data?.success)
@@ -77,9 +107,6 @@ const page = () => {
           {
             toast.warning(data?.msg)
           }
-          
-          
-           
           } catch (error) {
             toast.warning("There was an error")
              // console.log("there was an error")
@@ -101,6 +128,15 @@ const page = () => {
       <div className={`${styles.rowCol1ContentPart1} `}>
       <span className={`${sofiaProMedium.className} ${styles.usernames} `} >{auth?.first_name} {auth?.last_name}</span>
       <p className={`${sofiaProBold.className} `}  >User</p>
+      {/* profile image */}
+      <img
+      src={userData?.img_url}
+      alt="profile image"
+      width={100}
+      height={100}
+      className={styles.profileImg}
+    />
+ <input type="file" accept="image/*" onChange={handleFileChange} />
       </div>
       {/* part 2 */}
      <div className={`${styles.rowCol1ContentPart2} `}>
@@ -120,6 +156,7 @@ const page = () => {
         <span className={sofiaProRegular.className}>Username</span>
         <p className={`${sofiaProMedium.className}`} >{auth?.username}</p>
          </div>
+         <button className={ `${sofiaProBold.className} ${styles.logoutBtn}`}  onClick={handleLogout} >Logout</button>
      </div>
     </div>
   </div>

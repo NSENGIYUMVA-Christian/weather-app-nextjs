@@ -106,66 +106,18 @@ const updateUser = async (req, res) => {
       : [first_name, last_name, email, username, id];
 
     const updatedUser = await pool.query(updateUserQuery, updateUserValues);
-
+    const updateData = updatedUser.rows[0];
+    delete updateData.password;
     return res.status(200).json({
       success: true,
       msg: "User updated successfully",
-      user: updatedUser.rows[0], // Return the updated user data
+      user: updateData,
     });
   } catch (error) {
     console.error("Error updating user:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 };
-
-// Login
-// const login = async (req, res) => {
-//   const { username, password } = req.body;
-//   let numberOfLoginTries = 0;
-//   //// retrieve user from DB based on login form
-//   pool.query(getUserByUserName, [username], (err, result) => {
-//     if (err) {
-//       console.error("Error retrieving user:", err);
-//       return res.status(500).json({ error: "Internal server error" });
-//     }
-
-//     const user = result.rows[0];
-//     const { id, first_name, last_name, email, username, isvalid } = user;
-//     const tempUser = { id, first_name, last_name, email, username, isvalid };
-//     /// if no user found
-//     if (!user) {
-//       return res.json({ msg: "User not found" });
-//     }
-//     //// compare password
-//     bcrypt.compare(password, user.password, (err, isMatch) => {
-//       if (err) {
-//         console.error("Error comparing passwords:", err);
-//         return res.status(500).json({ error: "Internal server error" });
-//       }
-
-//       if (isMatch) {
-//         // if everything is correct
-//         // payload to send on token
-//         const tokenUser = createTokenUSer(tempUser);
-//         const token = createJWT({ payload: tokenUser });
-//         return res.json({ msg: "Login successful", tempUser, token });
-//       } else {
-//         // increment number of tries by one
-//         numberOfLoginTries++;
-//         /// if user try to login in 3 or more than 3 times
-//         if (numberOfLoginTries >= 3) {
-//           /// block account
-//           pool.query(getUserByID, [id], (err, response) => {
-//             if (err) throw err;
-//             //
-//             return res.send("account is blocked");
-//           });
-//         }
-//         return res.json({ msg: "Invalid credentials" });
-//       }
-//     });
-//   });
-// };
 
 // Login
 const login = async (req, res) => {
@@ -220,7 +172,15 @@ const login = async (req, res) => {
         );
 
         // Payload to send on token
-        const { id, first_name, last_name, email, username, is_blocked } = user;
+        const {
+          id,
+          first_name,
+          last_name,
+          email,
+          username,
+          is_blocked,
+          img_url,
+        } = user;
 
         const tempUser = {
           id,
@@ -229,6 +189,7 @@ const login = async (req, res) => {
           email,
           username,
           is_blocked,
+          img_url,
         };
         const tokenUser = createTokenUSer(tempUser);
         const token = createJWT({ payload: tokenUser });
