@@ -179,6 +179,17 @@ $skyBlue:#00608B;
     color:$skyBlue
 }
 
+.logoutBtn{
+    text-align: center;
+    border:none;
+    width:100%;
+    padding:5px;
+    border-radius: 5px;
+    color:white;
+    background-color: $skyBlue;
+    cursor: pointer;
+}
+
 ////small screen
 @media (max-width:768px){
     .main{

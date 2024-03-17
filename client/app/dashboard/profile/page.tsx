@@ -54,6 +54,11 @@ const page = () => {
       setPastWeatherData(getPastDataFromLocalStorage())
       },[])
 
+
+      /// handle logout
+      const handleLogout = ()=>{
+        console.log("logout")
+      }
       ///// update user form
         ///// handle register form change
     const handleUserDataChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,6 +152,7 @@ console.log("image upload success",response)
         <span className={sofiaProRegular.className}>Username</span>
         <p className={`${sofiaProMedium.className}`} >{auth?.username}</p>
          </div>
+         <button className={ `${sofiaProBold.className} ${styles.logoutBtn}`}  onClick={handleLogout} >Logout</button>
      </div>
     </div>
   </div>

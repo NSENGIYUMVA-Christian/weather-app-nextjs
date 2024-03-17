@@ -10,9 +10,6 @@
 import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
 import {  toast } from 'react-toastify';
 
-
-
-
   const AuthPage = () => {
    
     const {auth,setAuth} = useAppContext()
