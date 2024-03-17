@@ -3,6 +3,8 @@ import React, { useEffect,useState } from 'react'
 import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
 import styles from "./page.module.scss"
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { removeUserFromLocalStorage} from "@/utils/localStorage";
 
 import leftArrowIcon from "../../../public/images/leftArrow.svg"
 import { useAppContext } from '@/context';
@@ -18,7 +20,7 @@ import axios from "axios"
 const page = () => {
     /// getting global context
     const {triggerFetch,setTriggerFetch,auth,setAuth,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData} = useAppContext()
-   
+    const router = useRouter()
     const [file, setFile] = useState<File | null>(null);
 
     //user data
@@ -53,11 +55,13 @@ const page = () => {
       /// set past data
       setPastWeatherData(getPastDataFromLocalStorage())
       },[])
-
-
       /// handle logout
       const handleLogout = ()=>{
         console.log("logout")
+        removeUserFromLocalStorage()
+        setAuth(null);
+        router.push('/')
+        toast.success("Logout success")
       }
       ///// update user form
         ///// handle register form change
@@ -130,9 +134,9 @@ console.log("image upload success",response)
       alt="profile image"
       width={100}
       height={100}
+      className={styles.profileImg}
     />
-
-      <input type="file" accept="image/*" onChange={handleFileChange} />
+ <input type="file" accept="image/*" onChange={handleFileChange} />
       </div>
       {/* part 2 */}
      <div className={`${styles.rowCol1ContentPart2} `}>

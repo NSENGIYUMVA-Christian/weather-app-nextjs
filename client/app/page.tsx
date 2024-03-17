@@ -129,13 +129,7 @@ const [isLoading,setIsLoading] = useState<boolean>(false)
         <div className={`${styles.col2}`} >
     {hasAccountAlready ?
     <form className='loginForm' > 
-      <img
-      src="http://localhost:8080/uploads/chris.jpg"
-      alt="weather banner"
-      width={100}
-      height={100}
-    />
-    
+   
     {/* row 1 */}
       <div className={styles.col2Row1} >
       <h3 className={` ${styles.title} ${bicycletteRegular.className}`} >Login </h3>

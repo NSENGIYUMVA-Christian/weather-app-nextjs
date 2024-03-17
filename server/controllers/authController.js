@@ -106,11 +106,12 @@ const updateUser = async (req, res) => {
       : [first_name, last_name, email, username, id];
 
     const updatedUser = await pool.query(updateUserQuery, updateUserValues);
-
+    const updateData = updatedUser.rows[0];
+    delete updateData.password;
     return res.status(200).json({
       success: true,
       msg: "User updated successfully",
-      user: updatedUser.rows[0], // Return the updated user data
+      user: updateData,
     });
   } catch (error) {
     console.error("Error updating user:", error);

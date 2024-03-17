@@ -9,7 +9,7 @@ export function AppWrapper({children}:{
     children:ReactNode
 }){
      ////////auth state
-    const [auth,setAuth] = useState(getUserFromLocalStorage())
+    const [auth,setAuth] = useState<any>(getUserFromLocalStorage())
       /// weather data
       const [CurrentWeatherData,setCurrentWeatherData] = useState<any>(null)
       /// past weather data
