@@ -3,6 +3,7 @@ import React, { useEffect,useState } from 'react'
 import { sofiaProBold,sofiaProMedium,sofiaProRegular,bicycletteRegular } from '@/fonts/fonts';
 import styles from "./page.module.scss"
 import Image from 'next/image'
+
 import leftArrowIcon from "../../../public/images/leftArrow.svg"
 import { useAppContext } from '@/context';
 import { getCurrentDataFromLocalStorage , getPastDataFromLocalStorage} from '@/utils/localStorage';
@@ -18,6 +19,8 @@ const page = () => {
     /// getting global context
     const {triggerFetch,setTriggerFetch,auth,setAuth,CurrentWeatherData,setCurrentWeatherData,PastWeatherData,setPastWeatherData} = useAppContext()
    
+    const [file, setFile] = useState<File | null>(null);
+
     //user data
     const [userData,setUserData] = useState<any>({
         username:auth?.username,
@@ -28,6 +31,12 @@ const page = () => {
         email:auth?.email
     })
 
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (event.target.files) {
+        setFile(event.target.files[0]);
+      }
+    };
+
     useEffect(()=>{
       //set user data
       setUserData({
@@ -36,7 +45,8 @@ const page = () => {
         repeatPassword:"",
         first_name:auth?.first_name,
         last_name:auth?.last_name,
-        email:auth?.email
+        email:auth?.email,
+        img_url:auth?.img_url || ""
       })
       /// set current data
       setCurrentWeatherData(getCurrentDataFromLocalStorage())
@@ -53,6 +63,10 @@ const page = () => {
         //// update user submit
         const submitUpdatedData = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
           e.preventDefault()
+          if (!file) return;
+
+          const formData = new FormData();
+          formData.append('image', file);
           try {
             /// check if password is provided
           
@@ -63,7 +77,14 @@ const page = () => {
                 toast.warning("Password doesn't match")
                 return
               }
-
+/////  uploading image
+const response = await axios.post(`http://localhost:8080/api/v1/image/upload/${auth?.id}`, formData, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
+console.log("image upload success",response)
+////updating users
   const {data} = await axios.patch(`http://localhost:8080/api/v1/auth/update/${auth?.id}`,userData)
          console.log("temp",data)
              if(data?.success)
@@ -98,6 +119,15 @@ const page = () => {
       <div className={`${styles.rowCol1ContentPart1} `}>
       <span className={`${sofiaProMedium.className} ${styles.usernames} `} >{auth?.first_name} {auth?.last_name}</span>
       <p className={`${sofiaProBold.className} `}  >User</p>
+      {/* profile image */}
+      <img
+      src={userData?.img_url}
+      alt="profile image"
+      width={100}
+      height={100}
+    />
+
+      <input type="file" accept="image/*" onChange={handleFileChange} />
       </div>
       {/* part 2 */}
      <div className={`${styles.rowCol1ContentPart2} `}>

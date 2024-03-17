@@ -123,7 +123,7 @@ import {  toast } from 'react-toastify';
     <form className='loginForm' > 
     {/* row 1 */}
       <div className={styles.col2Row1} >
-      <h3 className={` ${styles.title} ${bicycletteRegular.className}`} >Login </h3>
+      <h3 className={` ${styles.title} ${bicycletteRegular.className}`} >Login</h3>
     <p className={` ${sofiaProRegular.className}`}  >Enter your login credentials to access your account</p>
       </div>
       {/* row 2 */}
